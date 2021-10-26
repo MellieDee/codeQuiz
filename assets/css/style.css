@@ -1,0 +1,113 @@
+:root {
+--primary-color: rgba(22, 24, 54, 1.0);
+--secondary-color: rgba(47, 40, 64, 1.0);
+--tertiary-color: rgba(212, 116, 183, 1.0);
+--accent-color1: rgba(116, 212, 207, 1.0);
+--accent-color2: rgba(116, 212, 207, 0.5);
+}
+
+
+/*   RESET DEFAULT BROWSER STYLES   */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+/*   RESET DEFAULT BROWSER STYLES Ends   */
+
+/* ----- FIRST DEVELOPED FOR  MOBILE SIZE 320px ----- */
+
+body {
+  background-color: var(--primary-color);
+  color: rgba(180, 181, 207, 1.0);
+  font-size: .8em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* text-align: center; */
+
+}
+
+/*   HEADER Starts   */
+header {
+  background-color:var(--primary-color);
+  border-bottom: 3px solid var(--tertiary-color);
+  /* display: flex;
+  justify-content: center; */
+  text-align: center ;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px 20px;
+  z-index: 999;
+}
+
+.head1, .head2 {
+  padding: .3em;
+}
+
+nav {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+nav ul li a {
+  color: var(--secondary-color);
+  /* margin-top: 0.1em; */
+  padding: 0.3em;
+}
+
+/* NEED TO FIZ SIZING & FONT COLOR)*/
+.btn {
+  background-color: var( --tertiary-color);
+  border: 2px solid var(--tertiary-color);
+  height: 2em;
+  /* padding: .7em; */
+  border-radius: 10px;
+  padding: 0;
+  margin: 0.8em 67% 0.8em 0.8em;;
+  font-size: 1em;
+  text-align: center;
+  /* box-shadow: 0 0 10px var( --accent-color1); */
+}
+
+.btn:hover {
+  background-color: var(--accent-color1);
+}
+
+.btn::after {
+  background-color: var(--accent-color2);
+  color: var(--secondary-color);
+}
+
+/*   FOOTER Starts */
+.foot-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0;
+  width: 100%;
+  font-size: 1em;
+  /* position: fixed; */
+}
+
+/* footer p {
+  margin: 1 em;
+  flex: 2;
+} */
+
+/*
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 1em;
+  flex: 1;
+  max-width: 10%;
+}
+footer ul li a img {
+ max-height: 100%;
+ max-width: 100%;
+}
+* FOOTER Ends  * */

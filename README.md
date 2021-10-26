@@ -2,7 +2,7 @@
 
 ## Purpose
 ***
-To develop a timed multiple-choice coding quiz that features dynamically updated HTML & CSS powered by JavaScript. It will run in the browser and have a clean plished, responsive user interface.
+To develop a timed multiple-choice coding quiz which features dynamically updated HTML & CSS powered by JavaScript. It will run in the browser and have a clean plished, responsive user interface.
 
 
 &nbsp;
