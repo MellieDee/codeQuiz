@@ -3,7 +3,7 @@
 --secondary-color: rgba(47, 40, 64, 1.0);
 --tertiary-color: rgba(212, 116, 183, 1.0);
 --accent-color1: rgba(116, 212, 207, 1.0);
---accent-color2: rgba(116, 212, 207, 0.5);
+--accent-color2: rgba(116, 212, 207, 0.3);
 }
 
 
@@ -88,8 +88,11 @@ nav ul li a {
   justify-content: space-evenly;
   margin: 0;
   width: 100%;
-  font-size: 1em;
-  /* position: fixed; */
+  font-size: 0.8em;
+  position: absolute;
+  border-top: 2px solid var(--accent-color1);
+  bottom: 2.0%;
+  padding: 0.5em;
 }
 
 /* footer p {
