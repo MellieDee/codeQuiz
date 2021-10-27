@@ -17,16 +17,24 @@
 /*   RESET DEFAULT BROWSER STYLES Ends   */
 
 /* ----- FIRST DEVELOPED FOR  MOBILE SIZE 320px ----- */
+html {
+  height: 100%;
+}
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: var(--primary-color);
   color: rgba(180, 181, 207, 1.0);
   font-size: .8em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   overflow-x: hidden;
-}
-html {
   height: 100%;
+}
+
+.container {
+  flex: 1 0 auto;
+
 }
 /*   HEADER Starts   */
 header {
@@ -138,18 +146,19 @@ header {
   /* display: flex;
   flex-wrap: wrap;
   justify-content: center; */
-  bottom: 0;
-  left: 0;
-  position: relative;
-  text-align: center;
+  /* bottom: 1em; */
+  /* left: 0; */
+  margin: 0.5em 0;
   width: 100%;
   background-color: var(--primary-color);
   border-top: 2px solid var(--accent-color1);
+  flex-shrink: 0;
 }
 
 .foot-text {
   margin: 0;
-  padding: 0;
+  padding: 0.4em 0;
+  text-align: center;
 }
 
 .foot-text p {
