@@ -23,10 +23,11 @@ body {
   color: rgba(180, 181, 207, 1.0);
   font-size: .8em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  /* text-align: center; */
-
+  overflow-x: hidden;
 }
-
+html {
+  height: 100%;
+}
 /*   HEADER Starts   */
 header {
   background-color:var(--primary-color);
@@ -44,32 +45,32 @@ header {
   padding: .3em;
 }
 
-nav {
-  padding: 0;
+
+/******   TOOL BELT STYLING STARTS  ****/
+.tool-belt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1.5em;
 }
 
-li {
+/*** Hi Score Btn Starts ***/
+.tool-belt nav ul li {
   list-style-type: none;
-}
-
-nav ul li a {
-  color: var(--secondary-color);
-  /* margin-top: 0.1em; */
-  padding: 0.3em;
-}
-
-/* NEED TO FIZ SIZING & FONT COLOR)*/
-.btn {
-  background-color: var( --tertiary-color);
-  border: 2px solid var(--tertiary-color);
-  height: 2em;
-  /* padding: .7em; */
+  padding: 0.8em 0.8em 0.4em 0.8em;
+  background-color: var(--tertiary-color);
   border-radius: 10px;
-  padding: 0;
-  margin: 0.8em 67% 0.8em 0.8em;;
-  font-size: 1em;
-  text-align: center;
-  /* box-shadow: 0 0 10px var( --accent-color1); */
+}
+
+.tool-belt nav ul li a {
+  text-decoration: none;
+  color:  var(--secondary-color);
+  font-size: 1.3em;
+} 
+
+/*TRY STYLING btn w/JS*****/
+ .btn {
+ box-shadow: 0 0 3px var( --accent-color1); 
 }
 
 .btn:hover {
@@ -79,38 +80,81 @@ nav ul li a {
 .btn::after {
   background-color: var(--accent-color2);
   color: var(--secondary-color);
+} 
+/*TRY STYLING btn w/JS*****/
+/*** Hi Score Btn Ends ***/
+
+
+/***   Timer Starts   ***/
+.tool-2-timer {
+  list-style-type: none;
+  padding: 0.6em;
+  background-color: var(--accent-color1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0.8em;
+  box-shadow: 0 0 3px var( --tertiary-color); 
+}
+
+.tool-2-timer  h3, .tool-2-timer p {
+  color:  var(--secondary-color);
+  font-size: 1.2em;
+  flex: 1;
+} 
+/***   Timer Ends   ***/
+/******   TOOL BELT STYLING ENDS  ****/
+
+/*****    QUESTION STYLING STARTS  ****/
+/** look into styling w/JS?  ***/
+.question-wrap {
+  /* border: 3px solid var(--accent-color1); */
+  box-shadow: 0 0 3px var( --accent-color1); 
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  /*display: flex;
+  flex-wrap: wrap;
+  justify-content: center;*/
+  margin: 0 1.5em 1.5em 1.5em;
+  padding: 1em;
+}
+
+.question-title, .question-wrap ol {
+  font-size: 2em;
+  text-align: left;
+  padding: 0 1em;
+  list-style-type: none;
+  /* margin: 0.7em;
+  width: 80%;
+  flex: 1; */
+}
+.question-title {
+  padding-top: 0.3em;
+  padding-bottom: 3em;
 }
 
 /*   FOOTER Starts */
 .foot-wrap {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 0;
+  justify-content: center; */
+  bottom: 0;
+  left: 0;
+  position: relative;
+  text-align: center;
   width: 100%;
-  font-size: 0.8em;
-  position: absolute;
+  background-color: var(--primary-color);
   border-top: 2px solid var(--accent-color1);
-  bottom: 2.0%;
-  padding: 0.5em;
 }
 
-/* footer p {
-  margin: 1 em;
-  flex: 2;
-} */
+.foot-text {
+  margin: 0;
+  padding: 0;
+}
 
-/*
-footer ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 1em;
-  flex: 1;
-  max-width: 10%;
+.foot-text p {
+  font-size: 0.8em;
+  bottom: 0;
+  padding: 0;
 }
-footer ul li a img {
- max-height: 100%;
- max-width: 100%;
-}
-* FOOTER Ends  * */
+/* FOOTER Ends  * */
