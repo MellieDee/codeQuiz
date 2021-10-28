@@ -1,62 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <title>CodeQuiz</title>
+
+  <!-- STYLING LINKS--->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <title>Code Quiz</title>
+
 </head>
 
 <body>
-  <div class="container">
-
-  <header>
-    <h1 class="head1">Code Quiz</h1>
-    <h2 class="head2">Test your might against the clock!</h2>
+<!--    HEADER   -->
+<div class="container">
+  <header class="col text-center m-4 ">
+    <h1 class="h1">Code Quiz</h1>
   </header>
-    
-  <div class="tool-belt">
-    <nav class="tool-1-nav">
-      <ul>
-        <li class="btn">
-          <a href="#high-scores">View High Scores</a>
-        </li>
-      </ul>
-    </nav>
+</div>
 
-    <div class="tool-2-timer">
-    <h3 id="timer">Time Left:</h3>
-    <p>CLOCK HERE</p>
-    </div> 
-  </div>   
- 
-  <main>
-    <div class="question-wrap">
-    <!-- <div class="questions"> //taskinator lists  had h3 & p characteristics! -->
-      <h4 class="question-title">This is where the question will go:</h4>
-      <ol> 
-        <li id="a">a.</li>
-        <li id="b">b.</li>
-        <li id="c">c.</li>
-        <li id="d">d.</li>
-      </ol>
+<section class="row">
+
+</section>
+
+
+<!--   START QUIZ  CARD   -->
+<section class="card mx-auto p-5 m-5 start-quiz" style="width: 60%">
+  <div class="card-body">
+    <p class="text-justify font-weight-bold start-text">
+      Press start to begin the countdown 
+      After each question is answered, the next will appear. If you answer a question incorrectly, time will be subtracted from the timer. Good luck!
+    </p>
+    <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
+  </div>
+</section> 
+
+
+<!--    MAIN QUESTION CARD   -->
+<main class="card mx-auto p-5 m-5 " style="width: 60%" id="quiz-container">
+  <div class="card-body">
+
+    <div class="card-header">
+    <h2 class="card-title questions">Question Text will go here</h2>
+    </div>
+
+    <!--   ANSWER CHOICES-->
+    <div class="list-group answers">
+      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="a"></li>
+      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="b"></li>
+      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="c"></li>
+      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="d"></li>
+    </div>
+
+  </div>
+</main>
+
+<!--   GAME OVER   CARD   -->
+<section class="card mx-auto  p-5 m-5" style="width: 60%" id="score-container">
+  <div class="card-body">
+
+    <div class="card-header">
+      <h2 class="card-title game-over">Time is up!</h2>
+      <p class="font-weight-bold score-text">Your score is:</p>
+    </div>
+
+    <div id="score-form">
+      <div class="form-group">
+        <input type="text" name="user-initials" id="initials" class="form-control" placeholder="Your Initials">
+      </div>
+
+      <div class="input-group-append form-group">
+        <button class="btn" id="save-initials" type="button">Save Initials</button>
+      </div>
 
     </div>
-  </main>
+  
   </div>
+</section>
+
+
+<!--   HIGH SORE LIST that gets added onto dynamically-->
+<section class="card mx-auto  p-5 m-5 score-list-container" style="width: 60%">
+  <h2 class="list-title">High Scores</h2>
+    <ul class="score-list" id="high-scores"></ul>
+</section>
 
 
 
 
 
-<footer class="foot-wrap">
-  <div class="foot-text">
-    <p>&copy;2021 Melanie Dubberley & MD<sup>2</sup></p>
-  </div>
-</footer>
 
-<script src="./assets/js/script.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="./assets/js/quiz.js"></script>
 
 
 </body>

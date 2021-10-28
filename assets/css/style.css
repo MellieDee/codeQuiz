@@ -1,10 +1,10 @@
 :root {
---primary-color: rgba(22, 24, 54, 1.0);
---secondary-color: rgba(47, 40, 64, 1.0);
---tertiary-color: rgba(212, 116, 183, 1.0);
---accent-color1: rgba(116, 212, 207, 1.0);
---accent-color2: rgba(116, 212, 207, 0.3);
-}
+  --primary-color: rgba(22, 24, 54, 1.0);
+  --secondary-color: rgba(47, 40, 64, 1.0);
+  --tertiary-color: rgba(212, 116, 183, 1.0);
+  --accent-color1: rgba(116, 212, 207, 1.0);
+  --accent-color2: rgba(116, 212, 207, 0.3);
+  }
 
 
 /*   RESET DEFAULT BROWSER STYLES   */
@@ -14,156 +14,45 @@
   padding: 0;
   text-decoration: none;
 }
-/*   RESET DEFAULT BROWSER STYLES Ends   */
 
-/* ----- FIRST DEVELOPED FOR  MOBILE SIZE 320px ----- */
-html {
-  height: 100%;
+  body {
+    font-size: .8em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow-x: hidden;
+    background-color: var(--primary-color);
+    color: rgba(180, 181, 207, 1.0);
+    min-height: 100vh;
+  }
+
+  .start-text, .score-text {
+    font-size: 1.8em;
+  }
+  .card {
+    color: var(--primary-color);
+  }
+
+  .btn {
+    box-shadow: 0 0 3px var( --accent-color1); 
+    background-color: var(--tertiary-color);
+    color: var(--primary-color)
+   }
+   
+   .btn:hover {
+     background-color: var(--accent-color1);
+   }
+   
+   .btn::after {
+     background-color: var(--accent-color2);
+     color: var(--secondary-color);
+   } 
+
+
+  .answers {
+    border-bottom: 2px solid var(--accent-color1);
+  }
+
+ .quiz-container, .score-container {
+  display: none;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--primary-color);
-  color: rgba(180, 181, 207, 1.0);
-  font-size: .8em;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  overflow-x: hidden;
-  height: 100%;
-}
-
-.container {
-  flex: 1 0 auto;
-
-}
-/*   HEADER Starts   */
-header {
-  background-color:var(--primary-color);
-  border-bottom: 3px solid var(--tertiary-color);
-  /* display: flex;
-  justify-content: center; */
-  text-align: center ;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 10px 20px;
-  z-index: 999;
-}
-
-.head1, .head2 {
-  padding: .3em;
-}
-
-
-/******   TOOL BELT STYLING STARTS  ****/
-.tool-belt {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 1.5em;
-}
-
-/*** Hi Score Btn Starts ***/
-.tool-belt nav ul li {
-  list-style-type: none;
-  padding: 0.8em 0.8em 0.4em 0.8em;
-  background-color: var(--tertiary-color);
-  border-radius: 10px;
-}
-
-.tool-belt nav ul li a {
-  text-decoration: none;
-  color:  var(--secondary-color);
-  font-size: 1.3em;
-} 
-
-/*TRY STYLING btn w/JS*****/
- .btn {
- box-shadow: 0 0 3px var( --accent-color1); 
-}
-
-.btn:hover {
-  background-color: var(--accent-color1);
-}
-
-.btn::after {
-  background-color: var(--accent-color2);
-  color: var(--secondary-color);
-} 
-/*TRY STYLING btn w/JS*****/
-/*** Hi Score Btn Ends ***/
-
-
-/***   Timer Starts   ***/
-.tool-2-timer {
-  list-style-type: none;
-  padding: 0.6em;
-  background-color: var(--accent-color1);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  margin: 0.8em;
-  box-shadow: 0 0 3px var( --tertiary-color); 
-}
-
-.tool-2-timer  h3, .tool-2-timer p {
-  color:  var(--secondary-color);
-  font-size: 1.2em;
-  flex: 1;
-} 
-/***   Timer Ends   ***/
-/******   TOOL BELT STYLING ENDS  ****/
-
-/*****    QUESTION STYLING STARTS  ****/
-/** look into styling w/JS?  ***/
-.question-wrap {
-  /* border: 3px solid var(--accent-color1); */
-  box-shadow: 0 0 3px var( --accent-color1); 
-  border-radius: 10px;
-  background-color: var(--secondary-color);
-  /*display: flex;
-  flex-wrap: wrap;
-  justify-content: center;*/
-  margin: 0 1.5em 1.5em 1.5em;
-  padding: 1em;
-}
-
-.question-title, .question-wrap ol {
-  font-size: 2em;
-  text-align: left;
-  padding: 0 1em;
-  list-style-type: none;
-  /* margin: 0.7em;
-  width: 80%;
-  flex: 1; */
-}
-.question-title {
-  padding-top: 0.3em;
-  padding-bottom: 3em;
-}
-
-/*   FOOTER Starts */
-.foot-wrap {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
-  /* bottom: 1em; */
-  /* left: 0; */
-  margin: 0.5em 0;
-  width: 100%;
-  background-color: var(--primary-color);
-  border-top: 2px solid var(--accent-color1);
-  flex-shrink: 0;
-}
-
-.foot-text {
-  margin: 0;
-  padding: 0.4em 0;
-  text-align: center;
-}
-
-.foot-text p {
-  font-size: 0.8em;
-  bottom: 0;
-  padding: 0;
-}
-/* FOOTER Ends  * */
+  

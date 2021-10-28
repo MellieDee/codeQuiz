@@ -1,22 +1,40 @@
-var countDownTimerEl = document.getElementById('timer');
+//   DEFINE VARIABLE/CONSTANTS
+
+const quizContainer = document.getElementById("quiz-container");
+
+const questionContainer = document.getElementById("questions");
+
+const answerContainer = document.getElementById("answers");
+
+const answerA = document.getElementById("a");
+const answerB = document.getElementById("b");
+const answerC = document.getElementById("c");
+const answerD = document.getElementById("d");
 
 
-//  ***   COUNTDOWN TIMER function ***
 
-//click start button
-//start buttoon intiates countdown
-//and first question (5-10 questions).( from 1 min try to st - 1 min= 60000)
-//the countdown is displayed, continously decreased util 0
-//when reaches 0, timer stops. game is over.
-//time is deducted if a question is wrong
+//START BUTTON VAR
 
-// high scores: -- see taskinator body for timer pacement
-//create a list like the taskinator - 
-// how manke last question disappear and get replaced with high score menu?
+var startBtn = document.getElementById("start");
+
+ //  Add event listener to start the quiz 
+ //if the button was clicked 
+ //then start the TimeR and display the first question
+ startBtn.addEventListener("click", startQuiz);
 
 
-// use JS to change btn color for hs & questions
 
-//get the HTML/DOM El
-var countDownTimerEl = document.getElementById('timer');
 
+
+ var startQuiz =  function (){
+    startBtn.style.display = "none";
+    //need timer to start = 0
+    //need timer to countdown every 1 sec
+    quizContainer.style.display = "block";
+  
+  };
+
+
+
+  //TO  CREATE HIGH SCORE LIST
+  
