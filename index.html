@@ -35,7 +35,7 @@
   <div class="card-body p-1 m-1">
     <p class="text-large text-center font-weight-bold">
       Press "Start Quiz" to begin the countdown.</br>
-      After each question is answered, the next will appear. If you answer a question incorrectly, you'll be penalized 5 seconds. Good luck!
+      After each question is answered, the next will appear. If you answer a question incorrectly, you'll be penalized 5 seconds. Go get 'em, Tiger!
     </p>
     <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
   </div>
@@ -71,28 +71,28 @@
   <div class="card-body">
 
     <div class="card-header">
-      <h2 class="card-title game-over">Finished!</h2>
-      <p class="font-weight-bold score-text">Your score is: <span id="timer-end"</span></p>
+      <h2 class="card-title game-overvfont-weight-bold">Game Over!</h2>
+      <p class="score-text">Your score is: <span id="timer-end"</span></p>
     </div>
 
-    <div id="score-form">
+    <form id="score-form">
       <div class="form-group">
-        <input type="text" name="user-initials" id="initials" class="form-control" placeholder="Your Initials">
+        <input type="text" name="user-initials" id="initials" class="form-control text-input" placeholder="Your Initials"/>
       </div>
 
       <div class="input-group-append form-group">
-        <button class="btn" id="save-initials" type="button">Save Initials</button>
+        <button class="btn" id="save-initials">Save Initials</button>
       </div>
 
-    </div>
+    </form>
   
   </div>
 </section>
 
 
-<!--   HIGH SORE LIST that gets added onto dynamically-->
-<section class="card mx-auto  p-5 m-5" id="score-list-container" style="width: 60%">
-  <h2 class="list-title">High Scores</h2>
+<!--   HIGH SCORE LIST that gets added onto dynamically-->
+<section class="card mx-auto p-1 m-3" style="width: 90%" id="score-list-container">
+  <h2 class="list-title text-center">High Scores</h2>
     <ul class="score-list" id="high-scores">
     </ul>
 </section>
