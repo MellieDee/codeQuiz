@@ -26,4 +26,6 @@ https://github.com/jorguzman100/04_Code_Quiz/blob/master/index.html
 https://www.youtube.com/watch?v=49pYIMygIcU
 https://www.geeksforgeeks.org/how-to-create-a-simple-javascript-quiz/
 
+https://www.codegrepper.com/code-examples/javascript/add+countdown+timer+to+javascript+quiz
+
 &nbsp;

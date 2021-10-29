@@ -29,10 +29,10 @@
 </section>
 
 
-<!--   START QUIZ  CARD   -->
-<section class="card mx-auto p-5 m-5 start-quiz" style="width: 60%">
+<!--   Welcome  CARD   -->
+<section class="card mx-auto p-5 m-5" style="width: 60%" id="welcome-container">
   <div class="card-body">
-    <p class="text-justify font-weight-bold start-text">
+    <p class="text-large text-justify font-weight-bold">
       Press start to begin the countdown 
       After each question is answered, the next will appear. If you answer a question incorrectly, time will be subtracted from the timer. Good luck!
     </p>
@@ -43,25 +43,30 @@
 
 <!--    MAIN QUESTION CARD   -->
 <main class="card mx-auto p-5 m-5 " style="width: 60%" id="quiz-container">
-  <div class="card-body">
 
+   <!-- Timer  -->  
     <div class="card-header">
-    <h2 class="card-title questions">Question Text will go here</h2>
+      <!--link or btn to to high scores page-->
+      <h2 class="h3" id="timer"></h2>
     </div>
 
-    <!--   ANSWER CHOICES-->
-    <div class="list-group answers">
+    <!--   Questions  -->
+    <div class="card-body" id="question-container">
+      <h3 class="card-text text-justify font-weight-bold" id="question"></h3>
+
+    <!--   Answer Choices-->
+    <div class="row list-group" id="answers">
       <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="a"></li>
       <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="b"></li>
       <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="c"></li>
       <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="d"></li>
     </div>
-
+    <h3 class="card-text text-justify font-weight-bold" id="result"</h3>
   </div>
 </main>
 
 <!--   GAME OVER   CARD   -->
-<section class="card mx-auto  p-5 m-5" style="width: 60%" id="score-container">
+<section class="card mx-auto  p-5" style="width: 60%" id="score-container">
   <div class="card-body">
 
     <div class="card-header">
@@ -85,9 +90,10 @@
 
 
 <!--   HIGH SORE LIST that gets added onto dynamically-->
-<section class="card mx-auto  p-5 m-5 score-list-container" style="width: 60%">
+<section class="card mx-auto  p-5 m-5" id="score-list-container" style="width: 60%">
   <h2 class="list-title">High Scores</h2>
-    <ul class="score-list" id="high-scores"></ul>
+    <ul class="score-list" id="high-scores">
+    </ul>
 </section>
 
 
@@ -103,7 +109,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="./assets/js/quiz.js"></script>
+<script src="./assets/js/script.js"></script>
 
 
 </body>
