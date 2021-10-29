@@ -14,9 +14,9 @@ let answerB = document.getElementById("b");
 let answerC = document.getElementById("c");
 let answerD = document.getElementById("d");
 let result = document.getElementById("result");
-
-
 let highScoresUl = document.getElementById("high-scores");
+
+
 
 
 /*------------ Question Array (partial)  --------------*/
@@ -58,7 +58,7 @@ answerA.addEventListener("click", review);
 answerB.addEventListener("click", review);
 answerC.addEventListener("click", review);
 answerD.addEventListener("click", review);
-// saveInitialsBtn.addEventListener("click", scoreFormHandler);
+saveInitialsBtn.addEventListener("click", scoreFormHandler);
 
 /*--------------   Event Management Ends  -------------*/
 
@@ -168,11 +168,12 @@ function resultsDisplay() {
   gameOverContainer.style.display = "block";
   timerEndEl.textContent = userScore * 10 + timeLeft
   console.log(timerEndEl.textContent);
+  console.log("results displayed");
 };
 // ***-------  Results Display Function Ends  --------*** 
 
 
-//  ***-------  High Score Function Starts  --------*** 
+//   ***-------- High Score List Function Starts   -------*** 
 // to create high score list
 var highScoreIdCounter = 0;
 var scoreFormEl = document.getElementById("score-form");
@@ -180,97 +181,88 @@ var highScoreListEl = document.getElementById("high-scores")
 var scoresArray = [];
 
 
-//   ***-------- Score Handler Function Starts   -------*** 
+
 function scoreFormHandler(event) {
   event.preventDefault();
   //get the actual typed-in letters
   let userInitials = document.querySelector("input[name='user-initials']").value;
   console.log(userInitials)
 
-  //var userScoreInput = result of TimeRanges()
-
-  //   if (userScoreInput > 0) {
-
   //check to see if the values are empty strings
   if (userInitials === "") {
     alert("I thought you wanted to save your progress?");
     return false;
-
+    }
     //  //reset form fields
     // // document.querySelector("input[name='user-initials']").value = "";
-  } else {
+
     //package data as object to save in localStorage
     var userNameObj = {
       name: userInitials,
       score: timerEndEl.textContent
-    };
+    }
     console.log(userNameObj);
+ 
     createListItemInfoEl(userNameObj);
 
-    //    } } else {
-    //          //   confirm("Oops. Would you like to try again?");     // }   };
-    //  }
-  };
+//   ***------   createListNameEl Function  -----****
+//make the list in HTML & Display
+function createListItemInfoEl(userNameObj) {
+  quizContainer.style.display = "none";
+  gameOverContainer.style.display = "none";
+  scoreListContainer.style.display = "block";
+
+  let listItemEl = document.createElement("li");
+  listItemEl.className = "score-item";
+  console.log(listItemEl)
+
+  //assign unique ID to each score as custom attribute
+  listItemEl.setAttribute("score-item-id", highScoreIdCounter);
+
+  //create a div to store the name and score in
+  var scoreInfoEl = document.createElement("div");
+  //div has a class name of
+  scoreInfoEl.className = "score-info";
+  console.log(scoreInfoEl)
 
 
-  //   ***------   createListNameEl Function  -----****
-  //make the list in HTML
+  //add HTML/display content to the div
+  scoreInfoEl.innerHTML = "<h3>" + userNameObj + "</h3>"
+  //add score info to the li item
+  listItemEl.appendChild(scoreInfoEl);
 
-  function createListItemInfoEl() {
-    quizContainer.style.display = "none";
-    gameOverContainer.style.display = "none";
-    scoreListContainer.style.display = "block";
-
-    var listItemEl = document.createElement("li");
-    listItemEl.className = "score-item";
-
-    //assign unique ID to each score as custom attribute
-    listItemEl.setAttribute("score-item-id", highScoreIdCounter);
-
-    //create a div to store the name and score in
-    var scoreInfoEl = document.createElement("div");
-    //div has a class name of
-    scoreInfoEl.className = "score-info";
-
-    //add HTML/display content to the div
-    scoreInfoEl.innerHTML = "<h3 class='h4 text-left'>PlayersScoreWill go here</h3>";
-    //add score info to the li item
-    listItemEl.appendChild(scoreInfoEl);
-
-    //add list item to the ul
-    highScoresUl.appendChild(listItemEl);
-    // console.log(listItemEl);
-  };
-
-  //add highScoreIdCounter as value to userNameObj
-  //     userNameObj.id = highScoreIdCounter;
-  //push entire new obj to the score array
+  // //add highScoreIdCounter value to userNameObj as a property
+  // userNameObj.id = highScoreIdCounter
+  //push to scores array
   scoresArray.push(userNameObj);
-  console.log(scoresArray);
 
-  saveScores();
+  //   //add list item to the ul
+  //    highScoresUl.appendChild(listItemEl);
+  //    // console.log(listItemEl);
+  //  };
+  }
+   saveScores();
+  }
+   //increase score counter for next high score
+   highScoreIdCounter++;
 
-  //increase score counter for next high score
-  highScoreIdCounter++;
+// };
+//  //add score in viewport 
+//  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
+// // // }
 
-};
-
-//add score in viewport 
-scoreFormEl.addEventListener("save-initials", scoreFormHandler);
-// }
-
-//   ***-----Save Scores in local storage Function    ------****
-function saveScores() {
-  localStorage.setItem("scoresArr", JSON.stringify(scoresArray));
-};
+ //   ***-----Save Scores in local storage Function    ------****
+ function saveScores() {
+   localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
+ };
 
 
-//   ***-----LOAD Scores from local storage Function    ------****
-function loadScores() {
-  //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
-  var savedScores = localStorage.getItem("scoresArray");
+ //   ***-----LOAD Scores from local storage Function    ------****
+ function loadScores() {
+   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
+   var savedScores = localStorage.getItem("scoresArray");
 
-  //Iterates through a array and creates elements on the page from it.
+   //Iterates through a array and creates elements on the page from it.
   {
     if (!savedScores) {
       scoresArray = [];
