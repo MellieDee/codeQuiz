@@ -16,33 +16,34 @@
 
 </head>
 
-<body>
+<body >
 <!--    HEADER   -->
 <div class="container">
   <header class="col text-center m-4 ">
     <h1 class="h1">Code Quiz</h1>
+    <p>Test your might against the clock!</p>
   </header>
 </div>
 
-<section class="row">
+<!-- <section class="row">
 
-</section>
+</section> -->
 
 
-<!--   Welcome  CARD   -->
-<section class="card mx-auto p-5 m-5" style="width: 60%" id="welcome-container">
-  <div class="card-body">
-    <p class="text-large text-justify font-weight-bold">
-      Press start to begin the countdown 
-      After each question is answered, the next will appear. If you answer a question incorrectly, time will be subtracted from the timer. Good luck!
+<!--   Welcome  Container   -->
+<section class="card mx-auto p-2 m-3" style="width: 90%" id="welcome-container">
+  <div class="card-body p-1 m-1">
+    <p class="text-large text-center font-weight-bold">
+      Press "Start Quiz" to begin the countdown.</br>
+      After each question is answered, the next will appear. If you answer a question incorrectly, you'll be penalized 5 seconds. Good luck!
     </p>
     <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
   </div>
 </section> 
 
 
-<!--    MAIN QUESTION CARD   -->
-<main class="card mx-auto p-5 m-5 " style="width: 60%" id="quiz-container">
+<!--    Quiz Container   -->
+<main class="card mx-auto p-2 m-3 " style="width: 90%" id="quiz-container">
 
    <!-- Timer  -->  
     <div class="card-header">
@@ -54,24 +55,24 @@
     <div class="card-body" id="question-container">
       <h3 class="card-text text-justify font-weight-bold" id="question"></h3>
 
-    <!--   Answer Choices-->
-    <div class="row list-group" id="answers">
-      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="a"></li>
-      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="b"></li>
-      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="c"></li>
-      <button type="button" class="list-group-item list-group-item-action btn choiceBtn" id="d"></li>
+    <!--   Answer Choices Container-->
+    <div class="row list-group" id="answer-container">
+      <button type="button" class="list-group-item list-group-item-action m-1 btn choiceBtn" id="a"></li>
+      <button type="button" class="list-group-item list-group-item-action m-1 btn choiceBtn" id="b"></li>
+      <button type="button" class="list-group-item list-group-item-action m-1  btn choiceBtn" id="c"></li>
+      <button type="button" class="list-group-item list-group-item-action m-1  btn choiceBtn" id="d"></li>
     </div>
     <h3 class="card-text text-justify font-weight-bold" id="result"</h3>
   </div>
 </main>
 
-<!--   GAME OVER   CARD   -->
-<section class="card mx-auto  p-5" style="width: 60%" id="score-container">
+<!--   GAME OVER Container   -->
+<section class="card mx-auto p-1 m-3" style="width: 90%" id="game-over-container">
   <div class="card-body">
 
     <div class="card-header">
-      <h2 class="card-title game-over">Time is up!</h2>
-      <p class="font-weight-bold score-text">Your score is:</p>
+      <h2 class="card-title game-over">Finished!</h2>
+      <p class="font-weight-bold score-text">Your score is: <span id="timer-end"</span></p>
     </div>
 
     <div id="score-form">

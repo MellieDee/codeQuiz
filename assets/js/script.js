@@ -1,34 +1,28 @@
-/*  ---------------- DEFINE VARIABLE/letANTS-------------*/
+/*  ---------------- DEFINE GLOBAL VARIABLES-------------*/
+let startBtn = document.getElementById("start");
 
+let welcomeContainer = document.getElementById("welcome-container");
 let quizContainer = document.getElementById("quiz-container");
-let question = document.getElementById("question");
-let welcomeContainer = document.getElementById("welcome-container")
+let answerContainer = document.getElementById("answer-container");
+let scoreListContainer = document.getElementById("score-list-container");
+var gameOverContainer = document.getElementById("game-over-container");
 
-let answerContainer = document.getElementById("answers");
+let question = document.getElementById("question");
 let answerA = document.getElementById("a");
 let answerB = document.getElementById("b");
 let answerC = document.getElementById("c");
 let answerD = document.getElementById("d");
-let result =document.getElementById("result");
+let result = document.getElementById("result");
 
-let timeLeft = 120;
-// var scores = document.getElementById("your-score");
 
-// const highScores = document.getElementById("hi-scores");
+let highScores = document.getElementById("hi-scores");
 
-// //START BUTTON VAR
-var startBtn = document.getElementById("start");
 
-// //  Add event listener to start the quiz 
-// //if the button was clicked 
-// //then start the TimeR and display the first question
-// startBtn.addEventListener("click", startQuiz);
-
-/*---------------- Question Array (partial)  --------------------*/
+/*------------ Question Array (partial)  --------------*/
 var userScore = 0;
 
-let quesArray = [
-  {
+let questionArray = [
+  { 
     question: "What does CDN stand for?",
     answerA: "Customer Data Network",
     answerB: "Consumer Delivery Network",
@@ -42,7 +36,7 @@ let quesArray = [
     answerA: "Soda",
     answerB: "Event from children up through parents, grandparents, to infinity and beyond",
     answerC: "Michael Bubly",
-    answerD: "Event from children up through parents",
+    answerD: "Event from parents down through kids",
     correct: "b"
   },
 
@@ -57,83 +51,57 @@ let quesArray = [
 ];
 
 
-/*--------------   Event Management  --------------*/
+/*--------------   Event Management Starts  -----------*/
 startBtn.addEventListener("click", startQuiz);
-answerA.addEventListener("click", grade);
-answerB.addEventListener("click", grade);
-answerC.addEventListener("click", grade);
-answerD.addEventListener("click", grade);
+answerA.addEventListener("click", review);
+answerB.addEventListener("click", review);
+answerC.addEventListener("click", review);
+answerD.addEventListener("click", review);
+
+/*--------------   Event Management Ends  -------------*/
 
 
 
-/*------------------Functions-----------------*/
 
-//   Start Quiz  
+/*------------------FUNCTIONS START-----------------*/
 
+//  ***------   Start Quiz Function Starts   ----- ***  
 function startQuiz() {
   welcomeContainer.style.display = "none";
   quizContainer.style.display = "block";
   displayQuestion();
-  countdown()
+  // countdown()
 };
+//   ***----Start Quiz Function Ends   ----****
 
-//TO DISPLAY QUESTIONS
-// Define Array Interation Components
-var lastQ = quesArray.length - 1;
+
+
+//  ***----   Display Questions Function Starts  ---- ***  
+// Define Array Iteration Components
+var lastQ = questionArray.length - 1;
 var currentQIndex = 0
 
-
 function displayQuestion () {
-  //questions is name of defined []
- var q = quesArray[currentQIndex];
- //what gets created as the 'new' dynamic HTML is the p-tag question text which is created by identifying what the question (ie question as deifnied in the array 'question: ') is in the [] of our questions at the current time (ie 'q' var above) Same for answers
+  //questionArray is name of defined []
+ var q = questionArray[currentQIndex];
+ //what gets created as the 'new' dynamic HTML is the p-tag question text, which is created by identifying at what index# in the array the question is  at the current time (ie 'q' var above) Same for answers
 
- question.innerText = q.question
+ question.innerText = q.question;
  answerA.textContent = q.answerA;
  answerB.textContent = q.answerB;
  answerC.textContent = q.answerC;
  answerD.textContent = q.answerD;
 }
-
-// //   DISPLAY FIRST QUESTION
-// currentQIndex = 0;
-// displayQuestion()
-
-// //   DISPLAY NEXT QUESTION
-// currentQIndex++;
-// displayQuestion()
-
-function grade () {
-  var userChoice = this.getAttribute("id")
-  console.log(userChoice);
-  if (userChoice === quesArray [currentQIndex].correct) {
-  userScore++
-  result.innerText = "Yes!"
-
-  } else {
-  result.innerText = "Oops! That's not it!";
-  timeLeft = timeLeft - 5;
-  }
-
-  if (currentQIndex < quesArray.length - 1) {
-    currentQIndex++
-    displayQuestion()
-  } else {
-    console.log("game's over")
-  }
-  
-}
+//  ***----   Display Questions Function Ends  ------***  
 
 
-//  TIMER
-
-
+//  ***-------  Timer Function Starts  --------***  
 // Timer that counts down from 5
-timerEl = document.getElementById("timer");
+let timerEl = document.getElementById("timer");
+let timerEndEl = document.getElementById("timer-end");
+let timeLeft = 120;
 
 function countdown() {
-
-
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -147,7 +115,7 @@ function countdown() {
       timerEl.textContent = timeLeft + ' second remaining';
       timeLeft--;
     } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      // Once `timeLeft` gets to 0, set `timerEl` to empty string
       timerEl.textContent = '';
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
@@ -156,44 +124,91 @@ function countdown() {
   }, 1000);
 }
 countdown()
+//  ***-------  Timer Function Ends  --------***  
+
+
+
+//  ***-------  Review Answer Function Starts  --------***  
+function review () {
+  //get the id from the button that the user clicked
+  var userChoice = this.getAttribute("id")
+  console.log(userChoice);
+  if (userChoice === questionArray[currentQIndex].correct) {
+  userScore++
+  result.innerText = "Yes!"
+  console.log(timeLeft);
+  console.log(userScore)
+
+  } else {
+  console.log(timeLeft);
+  result.innerText = "Oops! That's not it!";
+  timeLeft = timeLeft - 5;
+  console.log(timeLeft);
+  console.log(userScore)
+  }
+
+  if (currentQIndex < questionArray.length - 1) {
+    currentQIndex++
+    displayQuestion()
+
+  } else {
+    console.log("finished")
+    console.log(timeLeft);
+    console.log(userScore * 10)
+    resultsDisplay()
+  }
+}
+//  ***-------  Review Answer Function Ends  --------*** 
+
+
+function resultsDisplay() {
+  quizContainer.style.display =  "none";
+  gameOverContainer.style.display = "block";
+  timerEndEl.textContent = userScore * 10 + timeLeft
+  console.log(timerEndEl.textContent);
+};
+
+
+
+
 
 
 // //TO  CREATE HIGH SCORE LIST
-// var highScoreIdCounter = 0;
-// var scoreFormEl = document.querySelector("#score-form");
-// var highScoreListEl = document.querySelector("#high-scores")
-// var scoresArr = [];
+var highScoreIdCounter = 0;
+var scoreFormEl = document.querySelector("#score-form");
+var highScoreListEl = document.querySelector("#high-scores")
+var scoresArr = [];
 
 
-// //   Score Handlerfunction 
-// var scoreFormHandler = function (event) {
-//   event.preventDefault();
-//   //get the actual typed-in letters
-//   var userNameInput = document.querySelector("input[name='user-initials']").value;
-//   //var userScoreInput = result of TimeRanges()
+//   Score Handlerfunction 
+var scoreFormHandler = function (event) {
+  event.preventDefault();
+  //get the actual typed-in letters
+  var userNameInput = document.querySelector("input[name='user-initials']").value;
+  //var userScoreInput = result of TimeRanges()
 
-//   if (userScoreInput > 0) {
+  if (userScoreInput > 0) {
 
-//     //check to see if the values are empty strings
-//     if (userNameInput === "") {
-//       alert("I thought you wanted to save your progress?");
-//       return false;
+    //check to see if the values are empty strings
+    if (userNameInput === "") {
+      alert("I thought you wanted to save your progress?");
+      return false;
 
-//       //reset form fields
-//       document.querySelector("input[name='user-initials']").value = "";
-//     } else {
-//       //package data as object
-//       var userNameObj = {
-//         name: userNameInput,
-//         score: 22
-//       }
-//       createListNameEl(userNameObj);
-//     }
-//     // } else {
-//     //   confirm("Oops. Would you like to try again?");
-//     // }
-//   };
-
+      //reset form fields
+      document.querySelector("input[name='user-initials']").value = "";
+    } else {
+      //package data as object
+      var userNameObj = {
+        name: userNameInput,
+        score: 22
+      }
+      createListNameEl(userNameObj);
+    }
+    // } else {
+    //   confirm("Oops. Would you like to try again?");
+    // }
+  };
+}
 
 //   //***   createListNameEl  MAKE THE LIST  in HTML*** */
 //   var createListNameEl = function (userNameObj) {
