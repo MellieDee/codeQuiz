@@ -29,7 +29,7 @@ let answerD = document.getElementById("d");
 let result = document.getElementById("result");
 let highScoresOl = document.getElementById("high-scores");
 
-let timeLeft = 25;
+let timeLeft = 120;
 
 timerEl.textContent = timeLeft + ' seconds remaining';
 
@@ -91,11 +91,14 @@ startAgainBtn.addEventListener("click", startQuizAgain);
 
 function decrementTimer() {
   // As long as the `timeLeft` is greater than 1
+    // timeLeft--;
+
   if (timeLeft > 1) {
+     timeLeft--;
     // Set the `textContent` of `timerEl` to show the remaining seconds
     timerEl.textContent = timeLeft + ' seconds remaining';
     // Decrement `timeLeft` by 1
-    timeLeft--;
+    // timeLeft--;
   } else if (timeLeft === 1) {
     // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
     timerEl.textContent = timeLeft + ' second remaining';
@@ -166,7 +169,7 @@ function review(event) {
     console.log(timeLeft);
     result.innerText = "Oops! That's not it!";
     // use 1 less than penalty to ocunteract timer
-    timeLeft -= 4;
+    timeLeft -= 5;
     timerEl.textContent = timeLeft + " seconds remaining";
     console.log(timeLeft);
     console.log(userScore)
@@ -303,74 +306,3 @@ function startQuizAgain() {
 
 
 
-
-
-// //increase score counter for next high score
-// highScoreIdCounter++;
-//  //add score in viewport 
-//  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
-//  }
-  // let listItemEl = document.createElement("li");
-  // listItemEl.className = "score-item";
-  // console.log(listItemEl)
-
-  // //assign unique ID to each score as custom attribute
-  // listItemEl.setAttribute("score-item-id", highScoreIdCounter);
-
-  // //create a div to store the name and score in
-  // let scoreInfoEl = document.createElement("div");
-  // //div has a class name of
-  // scoreInfoEl.className = "score-info";
-  // console.log(scoreInfoEl)
-
-
-
-
-// // // document.querySelector("input[name='user-initials']").value = "";
-
-// //package data as object to save in localStorage
-// let userNameObj = {
-//   name: userInitials,
-//   score: timerEndEl.textContent
-// }
-
-// console.log(userNameObj.name);
-// console.log(userInitials);
-
-
-// //add HTML/display content to the div
-// userNameObjString = JSON.stringify(userNameObj);
-// //savedScores = JSON.parse(savedScores);
-// userNameObjString = JSON.parse(userNameObjString);
-// console.log(userNameObjString.name);
-// console.log(userNameObjString.score);
-
-// createListItemInfoEl(userNameObj);
-
-
-
-
-
-//   //add HTML/display content to the div
-//   userNameObjString = JSON.stringify(userNameObj)
-//   //savedScores = JSON.parse(savedScores);
-//   userNameObjString = JSON.parse(userNameObjString)
-//   console.log(userNameObjString.name);
-//   console.log(userNameObjString.score);
-
-//   scoreInfoEl.innerHTML = "<h3 class='h3'>" + userNameObjString.name + ' scored: ' + userNameObjString.score + "</h3>"
-//   //add score info to the li item
-//   listItemEl.appendChild(scoreInfoEl);
-
-//   // //add highScoreIdCounter value to userNameObj as a property
-//   // userNameObj.id = highScoreIdCounter
-//   //push to scores array
-//   scoresArray.push(userNameObjString);
-
-// //increase score counter for next high score
-// highScoreIdCounter++;
-
-// // };
-// //  //add score in viewport 
-// //  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
-// // // // }

@@ -17,46 +17,51 @@
 html {
   min-height: 100vh;
 }
-  body {
-    font-size: .8em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    overflow-x: hidden;
-    background-color: var(--primary-color);
-    color: rgba(180, 181, 207, 1.0);
-    min-height: 100vh;
-  }
 
-  .start-text, .score-text, p {
-    font-size: 1.8em;
-  }
-  .card {
-    color: var(--primary-color);
-  }
 
-  .btn {
-    box-shadow: 0 0 3px var( --accent-color1); 
-    background-color: var(--tertiary-color);
-    color: var(--primary-color)
-   }
+body {
+  font-size: .8em;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  overflow-x: hidden;
+  background-color: var(--primary-color);
+  color: rgba(180, 181, 207, 1.0);
+  min-height: 100vh;
+}
+
+.start-text, .score-text, p {
+  font-size: 1.8em;
+}
+
+ .card {
+ color: var(--primary-color);
+}
+
+.btn {
+  box-shadow: 0 0 3px var( --accent-color1); 
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
    
-   .btn:hover {
-     background-color: var(--accent-color1);
-   }
+.btn:hover {
+  background-color: var(--accent-color1);
+}
    
-   /* .btn::after {
-     background-color: var(--accent-color2);
-     color: var(--secondary-color);
-   }  */
+/* .btn::after {
+  background-color: var(--accent-color2);
+  color: var(--secondary-color);
+}  */
 
-   li {
-    list-style-type: none;
-  }
+li {
+ list-style-type: none;
+}
+
 a {
   color: inherit;
 }
-  .answers {
-    border-bottom: 2px solid var(--accent-color1);
-  }
+
+#question-container {
+  border-bottom: 2px solid var(--accent-color1);
+}
 
  .score-item {
   color: var(--secondary-color);
