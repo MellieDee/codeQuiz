@@ -13,9 +13,7 @@ let answerContainer = document.getElementById("answer-container");
 let gameOverContainer = document.getElementById("game-over-container");
 let scoreListContainer = document.getElementById("score-list-container");
 
-let form = document.getElementById("score-form");
-let scoreList = document.getElementById("score-list");
-
+//   *** Question Related ***
 let question = document.getElementById("question");
 let answerA = document.getElementById("a");
 let answerB = document.getElementById("b");
@@ -26,12 +24,16 @@ let highScoresOl = document.getElementById("high-scores");
 
 let currentQIndex = 0;
 
+//   *** Timer related ***
 let timerEl = document.getElementById("timer");
 let timerEndEl = document.getElementById("timer-end");
-let timeLeft = 120;
+let timeLeft = 40;
 timerEl.textContent = timeLeft + ' seconds remaining';
 let timeInterval;
 
+//   *** Score Related ***
+let form = document.getElementById("score-form");
+let scoreList = document.getElementById("score-list");
 
 
 /*------------ Question Array Starts  --------------*/
@@ -125,7 +127,7 @@ function decrementTimer() {
     timerEl.textContent = "";
     quizContainer.style.display = "none";
     gameOverContainer.style.display = "block";
-    timerEndEl.textContent = userScore * 10 + timeLeft
+    timerEndEl.textContent = userScore * 10  + timeLeft
  
     // Use `clearInterval()` to stop the timer
     clearInterval(timeInterval);
@@ -136,7 +138,7 @@ function decrementTimer() {
 
 /*---   Countdown Function Starts   ---*/
 function countdown() {
-  decrementTimer();
+  // decrementTimer();
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   timeInterval = setInterval(decrementTimer, 1000);
 }
@@ -147,7 +149,6 @@ function countdown() {
 /*--------   Start Quiz Function Starts   ------- */  
 function startQuiz() {
   welcomeContainer.style.display = "none";
-  // goBackContainer.style.display = "none";
   quizContainer.style.display = "block";
   displayQuestion();
   countdown();
@@ -184,7 +185,6 @@ function grade(event) {
   } else {
     console.log(timeLeft);
     result.innerText = "Oops! That's not it!";
-    // use 1 less than penalty to ocunteract timer
     timeLeft -= 5;
     timerEl.textContent = timeLeft + " seconds remaining";
     console.log(timeLeft);
@@ -309,9 +309,11 @@ function clearScores() {
 
 /*------   Start Quiz AGAIN Function Starts   -----*/
 function startQuizAgain() {
+  clearInterval(timeInterval);
+  timeLeft = 40;
+  timerEl.textContent = timeLeft + ' seconds remaining';
   welcomeContainer.style.display = "block";
   scoreListContainer.style.display = "none";
-  timeLeft = 20;
   userScore = 0;
   let q = questionArray[currentQIndex = 0];
   displayQuestion();
