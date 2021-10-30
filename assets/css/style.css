@@ -63,8 +63,9 @@ a {
   color: inherit;
 }
 
-#question-container {
-  border-bottom: 2px solid var(--accent-color1);
+
+#question-container, #answer-container  {
+  border-bottom: 3px solid var(--accent-color1);
 }
 
  .score-item {

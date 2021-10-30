@@ -27,7 +27,7 @@ let currentQIndex = 0;
 //   *** Timer related ***
 let timerEl = document.getElementById("timer");
 let timerEndEl = document.getElementById("timer-end");
-let timeLeft = 40;
+let timeLeft = 120;
 timerEl.textContent = timeLeft + ' seconds remaining';
 let timeInterval;
 
@@ -311,7 +311,7 @@ function clearScores() {
 /*------   Start Quiz AGAIN Function Starts   -----*/
 function startQuizAgain() {
   clearInterval(timeInterval);
-  timeLeft = 40;
+  timeLeft = 120;
   timerEl.textContent = timeLeft + ' seconds remaining';
   welcomeContainer.style.display = "block";
   scoreListContainer.style.display = "none";
