@@ -55,7 +55,7 @@ body {
   color: var(--secondary-color);
 }  */
 
-li {
+ .high-score-nav nav ul li {
  list-style-type: none;
 }
 
@@ -77,5 +77,3 @@ a {
  #quiz-container, #game-over-container, #score-list-container {
   display: none;
 }
-
-  

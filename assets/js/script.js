@@ -34,6 +34,7 @@ let timeInterval;
 //   *** Score Related ***
 let form = document.getElementById("score-form");
 let scoreList = document.getElementById("score-list");
+let li = document.createElement("li");
 
 
 /*------------ Question Array Starts  --------------*/
@@ -257,7 +258,7 @@ function addingScore(event) {
     highScoresOl.innerHTML = "";
 
     for (i = 0; i <= scoresArray.length - 1; i++) {
-      let li = document.createElement("li");
+      // let li = document.createElement("li"); defined globally
 
       li.className = "score-item";
       li.textContent = `${scoresArray[i].initials} at ${scoresArray[i].score}`;
