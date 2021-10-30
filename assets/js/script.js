@@ -29,7 +29,13 @@ let answerD = document.getElementById("d");
 let result = document.getElementById("result");
 let highScoresOl = document.getElementById("high-scores");
 
-let currentQIndex = 0
+let timeLeft = 25;
+
+timerEl.textContent = timeLeft + ' seconds remaining';
+
+let currentQIndex = 0;
+
+var timeInterval;
 
 
 
@@ -43,7 +49,7 @@ let questionArray = [
     answerB: "Consumer Delivery Network",
     answerC: "Content Delivery Network",
     answerD: "Content Data Network",
-    correct: "c"
+    correct: "Content Delivery Network"
   },
   {
     question: "What is bubbling?",
@@ -63,13 +69,13 @@ let questionArray = [
   }
 ];
 
+document.querySelectorAll(".choiceBtn").forEach((choiceBtn) => {
+  choiceBtn.addEventListener("click", review);
+});
+
 
 /*--------------   Event Management Starts  -----------*/
 startBtn.addEventListener("click", startQuiz);
-answerA.addEventListener("click", review);
-answerB.addEventListener("click", review);
-answerC.addEventListener("click", review);
-answerD.addEventListener("click", review);
 saveInitialsBtn.addEventListener("click", addingScore);
 clearScoresBtn.addEventListener("click", clearScores);
 highScoreBtn.addEventListener("click", loadScores);
@@ -78,46 +84,43 @@ startAgainBtn.addEventListener("click", startQuizAgain);
 /*--------------   Event Management Ends  --------------*/
 
 
-
-
-
 /*------------------FUNCTIONS START---------------------*/
 //  ***-------  Timer Countdown Function Starts  --------***  
 // let timerEl = document.getElementById("timer");
 // let timerEndEl = document.getElementById("timer-end");
-let timeLeft = 20;
+
+function decrementTimer() {
+  // As long as the `timeLeft` is greater than 1
+  if (timeLeft > 1) {
+    // Set the `textContent` of `timerEl` to show the remaining seconds
+    timerEl.textContent = timeLeft + ' seconds remaining';
+    // Decrement `timeLeft` by 1
+    timeLeft--;
+  } else if (timeLeft === 1) {
+    // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+    timerEl.textContent = timeLeft + ' second remaining';
+    timeLeft--;
+  } else {
+    // Once `timeLeft` gets to 0, set `timerEl` to empty string
+    timerEl.textContent = "";
+    quizContainer.style.display = "none";
+    gameOverContainer.style.display = "block";
+    timerEndEl.textContent = userScore * 10 + timeLeft
+    // form.style.display = "none";
+
+    // Use `clearInterval()` to stop the timer
+    clearInterval(timeInterval);
+  }
+}
+
 
 function countdown() {
+  decrementTimer();
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  let timeInterval = setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = timeLeft + ' seconds remaining';
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to empty string
-      timerEl.textContent = "";
-      quizContainer.style.display = "none";
-      gameOverContainer.style.display = "block";
-      timerEndEl.textContent = userScore * 10 + timeLeft
-      // form.style.display = "none";
-
-      // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
-      console.log("timer");
-    }
-
-  }, 1000);
+  timeInterval = setInterval(decrementTimer, 1000);
 }
 // countdown()
 //  ***-------  Timer Function Ends  --------***  
-
 
 //  ***------   Start Quiz Function Starts   ----- ***  
 function startQuiz() {
@@ -125,7 +128,7 @@ function startQuiz() {
   // goBackContainer.style.display = "none";
   quizContainer.style.display = "block";
   displayQuestion();
-  countdown()
+  countdown();
 };
 //   ***----Start Quiz Function Ends   ----****
 
@@ -149,10 +152,10 @@ function displayQuestion() {
 
 
 //  ***-------  Review Answer Function Starts  --------***  
-function review() {
-  //get the id from the button that the user clicked
-  let userChoice = this.getAttribute("id")
-  console.log(userChoice);
+function review(event) {
+  clearInterval(timeInterval);
+  var userChoice = event.target.textContent;
+
   if (userChoice === questionArray[currentQIndex].correct) {
     userScore++
     result.innerText = "Yes!"
@@ -162,27 +165,36 @@ function review() {
   } else {
     console.log(timeLeft);
     result.innerText = "Oops! That's not it!";
-    timeLeft = timeLeft - 5;
+    // use 1 less than penalty to ocunteract timer
+    timeLeft -= 4;
+    timerEl.textContent = timeLeft + " seconds remaining";
     console.log(timeLeft);
     console.log(userScore)
   }
 
-  if (currentQIndex < questionArray.length - 1) {
-    currentQIndex++
-    displayQuestion()
 
-  } else {
-    console.log("game over")
-    console.log(timeLeft);
-    console.log(userScore * 10)
-    resultsDisplay()
-  }
+  setTimeout(function () {
+    decrementTimer();
+    countdown();
+    if (currentQIndex < questionArray.length - 1) {
+      currentQIndex++
+      displayQuestion()
+
+    } else {
+      console.log("game over")
+      console.log(timeLeft);
+      console.log(userScore * 10)
+      resultsDisplay()
+    }
+    result.innerText = "";
+  }, 2000);
 }
 //  ***-------  Review Answer Function Ends  --------*** 
 
 
 // ***-------  Results Display Function Starts  --------***  
 function resultsDisplay() {
+  clearInterval(timeInterval);
   quizContainer.style.display = "none";
   gameOverContainer.style.display = "block";
   timerEndEl.textContent = userScore * 10 + timeLeft
@@ -281,7 +293,7 @@ function startQuizAgain() {
   scoreListContainer.style.display = "none";
   timeLeft = 20;
   userScore = 0;
-  let q = questionArray[currentQIndex];
+  let q = questionArray[currentQIndex = 0];
   displayQuestion();
 };
 //   ***----Start Quiz Function Ends   ----****
