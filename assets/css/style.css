@@ -16,8 +16,12 @@
 }
 html {
   min-height: 100vh;
+  cursor: default;
 }
-
+/* 
+ .default {
+   cursor: default;
+  } */
 
 body {
   font-size: .8em;

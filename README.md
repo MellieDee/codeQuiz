@@ -29,6 +29,13 @@ Then calculated the score as userScore * 10 + the timeLeft
 ### URLs I found Helpful
 ***
 
+#### For Question Development Fact Checking
+https://w3schools.com
+https://javascript.info/bubbling-and-capturing
+https://alligator.io/js/foreach-vs-for-loops/
+https://www.geeksforgeeks.org/javascript-array-prototype-constructor/
+
+#### Quiz Style & Code Inspiration
 https://github.com/jorguzman100/04_Code_Quiz/blob/master/index.html
 https://www.youtube.com/watch?v=49pYIMygIcU
 https://www.geeksforgeeks.org/how-to-create-a-simple-javascript-quiz/

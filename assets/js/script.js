@@ -1,25 +1,20 @@
-/*  ---------DEFINE GLOBAL letIABLES-------------*/
+/*  ---------DEFINE GLOBAL VARIABLES-------------*/
+//   *** Buttons ***
 let startBtn = document.getElementById("start");
 let saveInitialsBtn = document.getElementById("save-initials")
-//let goBackBtn = document.getElementById("go-back");
-let form = document.getElementById("score-form");
-let scoreList = document.getElementById("score-list");
+let highScoreBtn = document.getElementById("high-score-btn");
+let clearScoresBtn = document.getElementById("clear-scores");
+let startAgainBtn = document.getElementById("start-again");
 
-
-
+//   *** Display Containers ***
 let welcomeContainer = document.getElementById("welcome-container");
 let quizContainer = document.getElementById("quiz-container");
 let answerContainer = document.getElementById("answer-container");
 let gameOverContainer = document.getElementById("game-over-container");
 let scoreListContainer = document.getElementById("score-list-container");
-let highScoreBtn = document.getElementById("high-score-btn");
-let clearScoresBtn = document.getElementById("clear-scores");
-let startAgainBtn = document.getElementById("start-again");
 
-
-
-let timerEl = document.getElementById("timer");
-let timerEndEl = document.getElementById("timer-end");
+let form = document.getElementById("score-form");
+let scoreList = document.getElementById("score-list");
 
 let question = document.getElementById("question");
 let answerA = document.getElementById("a");
@@ -29,17 +24,17 @@ let answerD = document.getElementById("d");
 let result = document.getElementById("result");
 let highScoresOl = document.getElementById("high-scores");
 
-let timeLeft = 120;
-
-timerEl.textContent = timeLeft + ' seconds remaining';
-
 let currentQIndex = 0;
 
-var timeInterval;
+let timerEl = document.getElementById("timer");
+let timerEndEl = document.getElementById("timer-end");
+let timeLeft = 120;
+timerEl.textContent = timeLeft + ' seconds remaining';
+let timeInterval;
 
 
 
-/*------------ Question Array (partial)  --------------*/
+/*------------ Question Array Starts  --------------*/
 let userScore = 0;
 
 let questionArray = [
@@ -49,50 +44,72 @@ let questionArray = [
     answerB: "Consumer Delivery Network",
     answerC: "Content Delivery Network",
     answerD: "Content Data Network",
+
     correct: "Content Delivery Network"
   },
+
   {
     question: "What is bubbling?",
-    answerA: "Soda",
-    answerB: "Event from children up through parents, grandparents, to infinity and beyond",
-    answerC: "Michael Bubly",
-    answerD: "Event from parents down through kids",
-    correct: "b"
+    answerA: "Identifying an element that was targeted.",
+    answerB: "Event handled on a child element then up through its parent then through preceding ancestor elements.",
+    answerC: "Michael Bubl\u00E9 singing about tiny bubbles in his wine.",
+    answerD: "Event handled on a parent element then down through children elements.",
+
+    correct: "Event handled on a child element then up through its parent then through preceding ancestor elements."
   },
+
   {
-    question: "Dif between for  & While loops?",
-    answerA: "A",
-    answerB: "B",
-    answerC: "C",
-    answerD: "D",
-    correct: "a"
+    question: "Regarding forEach loops, which statement is true?",
+    answerA: "You use a temporary 'i' variable to access the array.",
+    answerB: "forEach loop does not iterate over each item in the array.",
+    answerC: "You are directly calling on the Array.prototype method in relation to the array, which lowers risk of accidental errors.",
+    answerD: "You can use an 'if' statement to check criteria, then break out of the loop early.",
+
+    correct: "You are directly calling on the Array.prototype method in relation to the array, which lowers risk of accidental errors."
+  },
+
+  {
+    question: "What is the purpose of 'return' in JavaScript?",
+    answerA: "To start the execution of a function.",
+    answerB: "To 'jump out' of a function.",
+    answerC: "To 'jump out' of a switch() statement.",
+    answerD: "To stop the execution of a function, and return a value from that function.",
+
+    correct: "To stop the execution of a function, and return a value from that function."
+  },
+
+  {
+    question: "What is the purpose of a switch() statement?",
+    answerA: "To repeat same actions based on different conditions.",
+    answerB: "To perform different actions based on different conditions.",
+    answerC: "To loop through a block of code while a specified condition is true.",
+    answerD: "To drink decaf instead of regular.",
+
+    correct: "To perform different actions based on different conditions."
   }
 ];
-
-document.querySelectorAll(".choiceBtn").forEach((choiceBtn) => {
-  choiceBtn.addEventListener("click", review);
-});
+/*------------ Question Array Starts  --------------*/
 
 
 /*--------------   Event Management Starts  -----------*/
+document.querySelectorAll(".choiceBtn").forEach((choiceBtn) => {
+  choiceBtn.addEventListener("click", grade);
+});
+
 startBtn.addEventListener("click", startQuiz);
 saveInitialsBtn.addEventListener("click", addingScore);
 clearScoresBtn.addEventListener("click", clearScores);
 highScoreBtn.addEventListener("click", loadScores);
 startAgainBtn.addEventListener("click", startQuizAgain);
-
 /*--------------   Event Management Ends  --------------*/
 
 
 /*------------------FUNCTIONS START---------------------*/
-//  ***-------  Timer Countdown Function Starts  --------***  
-// let timerEl = document.getElementById("timer");
-// let timerEndEl = document.getElementById("timer-end");
 
+/*---   Decrement Timer Function Starts   ---*/
+//PURPOSE: to account for timer text display delay in relation to question display
 function decrementTimer() {
-  // As long as the `timeLeft` is greater than 1
     // timeLeft--;
-
   if (timeLeft > 1) {
      timeLeft--;
     // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -104,28 +121,30 @@ function decrementTimer() {
     timerEl.textContent = timeLeft + ' second remaining';
     timeLeft--;
   } else {
-    // Once `timeLeft` gets to 0, set `timerEl` to empty string
+    // Once `timeLeft` gets to 0, set `timerEl` to empty string; display next screen - Game Over
     timerEl.textContent = "";
     quizContainer.style.display = "none";
     gameOverContainer.style.display = "block";
     timerEndEl.textContent = userScore * 10 + timeLeft
-    // form.style.display = "none";
-
+ 
     // Use `clearInterval()` to stop the timer
     clearInterval(timeInterval);
   }
 }
+/*---   Decrement Timer Function Ends   ---*/
 
 
+/*---   Countdown Function Starts   ---*/
 function countdown() {
   decrementTimer();
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   timeInterval = setInterval(decrementTimer, 1000);
 }
 // countdown()
-//  ***-------  Timer Function Ends  --------***  
+/*-------  Countdown Function Ends  --------*/  
 
-//  ***------   Start Quiz Function Starts   ----- ***  
+
+/*--------   Start Quiz Function Starts   ------- */  
 function startQuiz() {
   welcomeContainer.style.display = "none";
   // goBackContainer.style.display = "none";
@@ -133,13 +152,10 @@ function startQuiz() {
   displayQuestion();
   countdown();
 };
-//   ***----Start Quiz Function Ends   ----****
+/*------   Start Quiz Function Ends   -------*/
 
 
-//  ***----   Display Questions Function Starts  ---- ***  
-// Define Array Iteration Components
-
-
+/*-------   Display Question Function Starts  -----*/  
 function displayQuestion() {
   //questionArray is name of defined []
   let q = questionArray[currentQIndex];
@@ -151,13 +167,13 @@ function displayQuestion() {
   answerC.textContent = q.answerC;
   answerD.textContent = q.answerD;
 }
-//  ***----   Display Questions Function Ends  ------***  
+/*------   Display Question Function Ends  --------*/ 
 
 
-//  ***-------  Review Answer Function Starts  --------***  
-function review(event) {
+// -------  Grade Answer Function Starts  --------***  
+function grade(event) {
   clearInterval(timeInterval);
-  var userChoice = event.target.textContent;
+  let userChoice = event.target.textContent;
 
   if (userChoice === questionArray[currentQIndex].correct) {
     userScore++
@@ -175,7 +191,6 @@ function review(event) {
     console.log(userScore)
   }
 
-
   setTimeout(function () {
     decrementTimer();
     countdown();
@@ -190,12 +205,12 @@ function review(event) {
       resultsDisplay()
     }
     result.innerText = "";
-  }, 2000);
+  }, 1500);
 }
-//  ***-------  Review Answer Function Ends  --------*** 
+/*-------  Grade Answer Function Ends  --------*/ 
 
 
-// ***-------  Results Display Function Starts  --------***  
+/*-------  Results Display Function Starts  --------*/
 function resultsDisplay() {
   clearInterval(timeInterval);
   quizContainer.style.display = "none";
@@ -204,11 +219,10 @@ function resultsDisplay() {
   console.log(timerEndEl.textContent);
   console.log("results displayed");
 };
-// ***-------  Results Display Function Ends  --------*** 
+/*-------  Results Display Function Ends  --------*/ 
 
 
-//   ***-------- ADDING SCORES TO ARRAY Starts   -------*** 
-// let highScoreIdCounter = 0;
+/*--------   Adding Score Function Starts   ---------*/ 
 let scoresArray = [];
 
 function addingScore(event) {
@@ -257,15 +271,17 @@ function addingScore(event) {
     loadScores();
   }
 }
+/*--------   Adding Score Function Ends   ---------*/ 
 
 
-//   ***-----Save Scores in local storage Function    ------**** 
+/*--------   Save Scores Function Starts   ---------*/ 
 function saveScores() {
   localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
 };
+/*--------   Save Scores Function Starts   ---------*/ 
 
 
-//    ***-----LOAD Scores from local storage Function    ------****
+/*-----LOAD Scores (from local storage) Function Starts   ------*/
 function loadScores() {
   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
   quizContainer.style.display = "none";
@@ -275,22 +291,23 @@ function loadScores() {
 
   let savedScores = JSON.parse(localStorage.getItem("scoresArray"));
 
-  //Iterates through a array and creates elements on the page from it.
-
   if (!savedScores) {
     scoresArray = savedScores;
     return false;
   };
 }
+/*-----LOAD Scores (from local storage) Function Ends   ------*/
 
 
+/*-----clearScores Function Starts   ------*/
 function clearScores() {
   localStorage.clear();
   scoreList.style.display = "none";
 }
+/*-----clearScores Function Ends   ------*/
 
 
-//  ***------   Start Quiz AGAIN Function Starts   ----- ***  
+/*------   Start Quiz AGAIN Function Starts   -----*/
 function startQuizAgain() {
   welcomeContainer.style.display = "block";
   scoreListContainer.style.display = "none";
@@ -299,10 +316,4 @@ function startQuizAgain() {
   let q = questionArray[currentQIndex = 0];
   displayQuestion();
 };
-//   ***----Start Quiz Function Ends   ----****
-
-
-
-
-
-
+/*----Start Quiz Again Function Ends   -----*/
