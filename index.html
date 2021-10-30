@@ -19,15 +19,29 @@
 <body >
 <!--    HEADER   -->
 <div class="container">
-  <header class="col text-center m-4 ">
-    <h1 class="h1">Code Quiz</h1>
-    <p>Test your might against the clock!</p>
-  </header>
+  <div class="row">
+    <header class="col-12 text-center m-4 ">
+      <h1 class="h1">Code Quiz</h1>
+      <p>Test your might against the clock!</p>
+     </header>
+
+    <div class="col-12 align-items-center m-4">
+      <nav>
+       <ul>
+          <li class="btn" id="high-score-btn">
+           <a href="#score-list-container">High Scores</a>
+         </li>
+      
+          <!-- <li class="btn">
+          <a href="#welcome-container">Start Over</a>
+          </li> -->
+        </ul>
+       </nav>
+    </div>
+
+  </div>
 </div>
 
-<!-- <section class="row">
-
-</section> -->
 
 
 <!--   Welcome  Container   -->
@@ -40,6 +54,17 @@
     <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
   </div>
 </section> 
+
+<!-- 
+  <!-- Go Back Container
+<section class="card mx-auto p-2 m-3" style="width: 90%" id="go-back-container">
+  <div class="card-body p-1 m-1">
+    <p class="text-large text-center font-weight-bold">
+      Press "Start Quiz" to begin the quiz again. Play like you mean it!
+    </p>
+    <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
+  </div>
+</section>  -->
 
 
 <!--    Quiz Container   -->
@@ -85,6 +110,10 @@
       </div>
 
     </form>
+<!-- 
+    <div class="card-footer">
+      <button class="btn" id="start-again">Start Again</button>
+    </div> -->
   
   </div>
 </section>
@@ -92,10 +121,24 @@
 
 <!--   HIGH SCORE LIST that gets added onto dynamically-->
 <section class="card mx-auto p-1 m-3" style="width: 90%" id="score-list-container">
-  <h2 class="list-title text-center">High Scores</h2>
-  
-    <ol class="score-list" id="high-scores">
+  <div class="card-body"
+
+    <div class="card-header"> 
+    <h2 class="card-title list-title text-center">High Scores</h2>
+    </div>
+   
+    <div id="score-list">
+    <ol class="list-group score-list" id="high-scores">
     </ol>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn" id="start-again">Start Again</button>
+    
+      <button class="btn" id="clear-scores">Clear High Scores</button>
+    </div>
+
+
 </section>
 
 

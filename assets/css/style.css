@@ -48,10 +48,22 @@ html {
      color: var(--secondary-color);
    }  */
 
-
+   li {
+    list-style-type: none;
+  }
+a {
+  color: inherit;
+}
   .answers {
     border-bottom: 2px solid var(--accent-color1);
   }
+
+ .score-item {
+  color: var(--secondary-color);
+  font-size: 1.6em;
+  padding: 1em 3em;
+  line-height: 1.5;
+ }
 
  #quiz-container, #game-over-container, #score-list-container {
   display: none;

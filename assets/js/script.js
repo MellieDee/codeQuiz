@@ -1,12 +1,25 @@
-/*  ---------------- DEFINE GLOBAL VARIABLES-------------*/
+/*  ---------DEFINE GLOBAL letIABLES-------------*/
 let startBtn = document.getElementById("start");
 let saveInitialsBtn = document.getElementById("save-initials")
+//let goBackBtn = document.getElementById("go-back");
+let form = document.getElementById("score-form");
+let scoreList = document.getElementById("score-list");
+
+
 
 let welcomeContainer = document.getElementById("welcome-container");
 let quizContainer = document.getElementById("quiz-container");
 let answerContainer = document.getElementById("answer-container");
 let gameOverContainer = document.getElementById("game-over-container");
 let scoreListContainer = document.getElementById("score-list-container");
+let highScoreBtn = document.getElementById("high-score-btn");
+let clearScoresBtn = document.getElementById("clear-scores");
+let startAgainBtn = document.getElementById("start-again");
+
+
+
+let timerEl = document.getElementById("timer");
+let timerEndEl = document.getElementById("timer-end");
 
 let question = document.getElementById("question");
 let answerA = document.getElementById("a");
@@ -16,11 +29,12 @@ let answerD = document.getElementById("d");
 let result = document.getElementById("result");
 let highScoresOl = document.getElementById("high-scores");
 
+let currentQIndex = 0
 
 
 
 /*------------ Question Array (partial)  --------------*/
-var userScore = 0;
+let userScore = 0;
 
 let questionArray = [
   {
@@ -31,7 +45,6 @@ let questionArray = [
     answerD: "Content Data Network",
     correct: "c"
   },
-
   {
     question: "What is bubbling?",
     answerA: "Soda",
@@ -40,7 +53,6 @@ let questionArray = [
     answerD: "Event from parents down through kids",
     correct: "b"
   },
-
   {
     question: "Dif between for  & While loops?",
     answerA: "A",
@@ -59,52 +71,25 @@ answerB.addEventListener("click", review);
 answerC.addEventListener("click", review);
 answerD.addEventListener("click", review);
 saveInitialsBtn.addEventListener("click", addingScore);
+clearScoresBtn.addEventListener("click", clearScores);
+highScoreBtn.addEventListener("click", loadScores);
+startAgainBtn.addEventListener("click", startQuizAgain);
 
-/*--------------   Event Management Ends  -------------*/
-
-
-
-
-/*------------------FUNCTIONS START-----------------*/
-
-//  ***------   Start Quiz Function Starts   ----- ***  
-function startQuiz() {
-  welcomeContainer.style.display = "none";
-  quizContainer.style.display = "block";
-  displayQuestion();
-  // countdown()
-};
-//   ***----Start Quiz Function Ends   ----****
+/*--------------   Event Management Ends  --------------*/
 
 
-//  ***----   Display Questions Function Starts  ---- ***  
-// Define Array Iteration Components
-var lastQ = questionArray.length - 1;
-var currentQIndex = 0
-
-function displayQuestion() {
-  //questionArray is name of defined []
-  var q = questionArray[currentQIndex];
-  //what gets created as the 'new' dynamic HTML is the p-tag question text, which is created by identifying at what index# in the array the question is  at the current time (ie 'q' var above) Same for answers
-
-  question.innerText = q.question;
-  answerA.textContent = q.answerA;
-  answerB.textContent = q.answerB;
-  answerC.textContent = q.answerC;
-  answerD.textContent = q.answerD;
-}
-//  ***----   Display Questions Function Ends  ------***  
 
 
-//  ***-------  Timer Function Starts  --------***  
-// Timer that counts down from 5
-let timerEl = document.getElementById("timer");
-let timerEndEl = document.getElementById("timer-end");
-let timeLeft = 120;
+
+/*------------------FUNCTIONS START---------------------*/
+//  ***-------  Timer Countdown Function Starts  --------***  
+// let timerEl = document.getElementById("timer");
+// let timerEndEl = document.getElementById("timer-end");
+let timeLeft = 20;
 
 function countdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function () {
+  let timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
     if (timeLeft > 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
@@ -117,22 +102,56 @@ function countdown() {
       timeLeft--;
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to empty string
-      timerEl.textContent = '';
+      timerEl.textContent = "";
+      quizContainer.style.display = "none";
+      gameOverContainer.style.display = "block";
+      timerEndEl.textContent = userScore * 10 + timeLeft
+      // form.style.display = "none";
+
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
       console.log("timer");
     }
+
   }, 1000);
 }
-countdown()
+// countdown()
 //  ***-------  Timer Function Ends  --------***  
 
+
+//  ***------   Start Quiz Function Starts   ----- ***  
+function startQuiz() {
+  welcomeContainer.style.display = "none";
+  // goBackContainer.style.display = "none";
+  quizContainer.style.display = "block";
+  displayQuestion();
+  countdown()
+};
+//   ***----Start Quiz Function Ends   ----****
+
+
+//  ***----   Display Questions Function Starts  ---- ***  
+// Define Array Iteration Components
+
+
+function displayQuestion() {
+  //questionArray is name of defined []
+  let q = questionArray[currentQIndex];
+  //what gets created as the 'new' dynamic HTML is the p-tag question text, which is created by identifying at what index# in the array the question is  at the current time (ie 'q' let above) Same for answers
+
+  question.innerText = q.question;
+  answerA.textContent = q.answerA;
+  answerB.textContent = q.answerB;
+  answerC.textContent = q.answerC;
+  answerD.textContent = q.answerD;
+}
+//  ***----   Display Questions Function Ends  ------***  
 
 
 //  ***-------  Review Answer Function Starts  --------***  
 function review() {
   //get the id from the button that the user clicked
-  var userChoice = this.getAttribute("id")
+  let userChoice = this.getAttribute("id")
   console.log(userChoice);
   if (userChoice === questionArray[currentQIndex].correct) {
     userScore++
@@ -174,31 +193,25 @@ function resultsDisplay() {
 
 
 //   ***-------- ADDING SCORES TO ARRAY Starts   -------*** 
-// to create high score list
-var highScoreIdCounter = 0;
-var scoreFormEl = document.getElementById("score-form");
-var highScoreListEl = document.getElementById("high-scores")
-var scoresArray = [];
-
+// let highScoreIdCounter = 0;
+let scoresArray = [];
 
 function addingScore(event) {
   event.preventDefault();
   //get the actual typed-in letters
- //check if typed UPPERCASE
-
   let userInitials = document.querySelector("input[name='user-initials']")
-  //value
-  // console.log(userInitials)
 
+  // console.log(userInitials)
+  //check if typed UPPERCASE
   let initialsUpper = userInitials.value.toUpperCase();
 
   //check to see if the values are empty strings
-  if (userInitials === "") {
+  if (initialsUpper === "") {
     alert("I thought you wanted to save your progress?");
     return false;
 
   } else {
-    scoresArray.push({initials: initialsUpper, score: timerEndEl.textContent })
+    scoresArray.push({ initials: initialsUpper, score: timerEndEl.textContent })
 
     //to sort the order of the scores
     scoresArray = scoresArray.sort(
@@ -211,13 +224,14 @@ function addingScore(event) {
         }
       }
     )
-    
+
     highScoresOl.innerHTML = "";
 
     for (i = 0; i <= scoresArray.length - 1; i++) {
       let li = document.createElement("li");
 
-      li.textContent  = `${scoresArray[i].initials} Your Score Is ${scoresArray[i].score}`;
+      li.className = "score-item";
+      li.textContent = `${scoresArray[i].initials} at ${scoresArray[i].score}`;
       // console.log(scoresArray[i].initials);
 
       highScoresOl.appendChild(li);
@@ -229,40 +243,48 @@ function addingScore(event) {
   }
 }
 
-//   ***-----Save Scores in local storage Function    ------**** 
 
+//   ***-----Save Scores in local storage Function    ------**** 
 function saveScores() {
- localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
+  localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
 };
 
 
-//   ***-----LOAD Scores from local storage Function    ------****
+//    ***-----LOAD Scores from local storage Function    ------****
 function loadScores() {
   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
   quizContainer.style.display = "none";
   gameOverContainer.style.display = "none";
+  welcomeContainer.style.display = "none";
   scoreListContainer.style.display = "block";
 
-  var savedScores = JSON.parse(localStorage.getItem("scoresArray"));
+  let savedScores = JSON.parse(localStorage.getItem("scoresArray"));
 
   //Iterates through a array and creates elements on the page from it.
-  
-    if (!savedScores) {
-      scoresArray = savedScores;
-      return false;
+
+  if (!savedScores) {
+    scoresArray = savedScores;
+    return false;
   };
 }
 
 
+function clearScores() {
+  localStorage.clear();
+  scoreList.style.display = "none";
+}
 
 
-
-
-
-
-
-
-
+//  ***------   Start Quiz AGAIN Function Starts   ----- ***  
+function startQuizAgain() {
+  welcomeContainer.style.display = "block";
+  scoreListContainer.style.display = "none";
+  timeLeft = 20;
+  userScore = 0;
+  let q = questionArray[currentQIndex];
+  displayQuestion();
+};
+//   ***----Start Quiz Function Ends   ----****
 
 
 
@@ -284,7 +306,7 @@ function loadScores() {
   // listItemEl.setAttribute("score-item-id", highScoreIdCounter);
 
   // //create a div to store the name and score in
-  // var scoreInfoEl = document.createElement("div");
+  // let scoreInfoEl = document.createElement("div");
   // //div has a class name of
   // scoreInfoEl.className = "score-info";
   // console.log(scoreInfoEl)
@@ -292,13 +314,10 @@ function loadScores() {
 
 
 
-
-
-// //  //reset form fields
 // // // document.querySelector("input[name='user-initials']").value = "";
 
 // //package data as object to save in localStorage
-// var userNameObj = {
+// let userNameObj = {
 //   name: userInitials,
 //   score: timerEndEl.textContent
 // }
@@ -318,27 +337,6 @@ function loadScores() {
 
 
 
-// //   ***------   createListItemInfoEl Function  -----****
-
-// //make the list in HTML & Display
-
-// function createListItemInfoEl(userNameObj) {
-//   quizContainer.style.display = "none";
-//   gameOverContainer.style.display = "none";
-//   scoreListContainer.style.display = "block";
-
-//   let listItemEl = document.createElement("li");
-//   listItemEl.className = "score-item";
-//   console.log(listItemEl)
-
-//   //assign unique ID to each score as custom attribute
-//   listItemEl.setAttribute("score-item-id", highScoreIdCounter);
-
-//   //create a div to store the name and score in
-//   var scoreInfoEl = document.createElement("div");
-//   //div has a class name of
-//   scoreInfoEl.className = "score-info";
-//   console.log(scoreInfoEl)
 
 
 //   //add HTML/display content to the div
@@ -357,13 +355,6 @@ function loadScores() {
 //   //push to scores array
 //   scoresArray.push(userNameObjString);
 
-//   //add list item to the ol
-//   highScoresol.appendChild(listItemEl);
-//   // console.log(listItemEl);
-// };
-
-// saveScores();
-
 // //increase score counter for next high score
 // highScoreIdCounter++;
 
@@ -371,29 +362,3 @@ function loadScores() {
 // //  //add score in viewport 
 // //  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
 // // // // }
-
-// //   ***-----Save Scores in local storage Function    ------****
-// function saveScores() {
-//   localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
-// };
-
-
-// //   ***-----LOAD Scores from local storage Function    ------****
-// function loadScores() {
-//   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
-//   var savedScores = localStorage.getItem("scoresArray");
-
-//   //Iterates through a array and creates elements on the page from it.
-//   {
-//     if (!savedScores) {
-//       scoresArray = [];
-//       return false;
-//     };
-//     savedScores = JSON.parse(savedScores);
-//     for (var i = 0; i < savedScores.length; i++) {
-//       //pass ea  score obj into createListItemInfoEl()
-//       createListItemInfoEl(savedScores[i]);
-//     };
-//   };
-
-// }
