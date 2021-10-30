@@ -14,7 +14,7 @@ let answerB = document.getElementById("b");
 let answerC = document.getElementById("c");
 let answerD = document.getElementById("d");
 let result = document.getElementById("result");
-let highScoresUl = document.getElementById("high-scores");
+let highScoresOl = document.getElementById("high-scores");
 
 
 
@@ -58,7 +58,7 @@ answerA.addEventListener("click", review);
 answerB.addEventListener("click", review);
 answerC.addEventListener("click", review);
 answerD.addEventListener("click", review);
-saveInitialsBtn.addEventListener("click", scoreFormHandler);
+saveInitialsBtn.addEventListener("click", addingScore);
 
 /*--------------   Event Management Ends  -------------*/
 
@@ -173,7 +173,7 @@ function resultsDisplay() {
 // ***-------  Results Display Function Ends  --------*** 
 
 
-//   ***-------- High Score List Function Starts   -------*** 
+//   ***-------- ADDING SCORES TO ARRAY Starts   -------*** 
 // to create high score list
 var highScoreIdCounter = 0;
 var scoreFormEl = document.getElementById("score-form");
@@ -181,103 +181,219 @@ var highScoreListEl = document.getElementById("high-scores")
 var scoresArray = [];
 
 
-
-function scoreFormHandler(event) {
+function addingScore(event) {
   event.preventDefault();
   //get the actual typed-in letters
-  let userInitials = document.querySelector("input[name='user-initials']").value;
-  console.log(userInitials)
+ //check if typed UPPERCASE
+
+  let userInitials = document.querySelector("input[name='user-initials']")
+  //value
+  // console.log(userInitials)
+
+  let initialsUpper = userInitials.value.toUpperCase();
 
   //check to see if the values are empty strings
   if (userInitials === "") {
     alert("I thought you wanted to save your progress?");
     return false;
-    }
-    //  //reset form fields
-    // // document.querySelector("input[name='user-initials']").value = "";
 
-    //package data as object to save in localStorage
-    var userNameObj = {
-      name: userInitials,
-      score: timerEndEl.textContent
-    }
-    console.log(userNameObj.name);
- 
-    createListItemInfoEl(userNameObj);
+  } else {
+    scoresArray.push({initials: initialsUpper, score: timerEndEl.textContent })
 
-//   ***------   createListNameEl Function  -----****
-//make the list in HTML & Display
-function createListItemInfoEl(userNameObj) {
+    //to sort the order of the scores
+    scoresArray = scoresArray.sort(
+      (a, b) => {
+        if (a.score < b.score) {
+          return 1;
+
+        } else {
+          return -1;
+        }
+      }
+    )
+    
+    highScoresOl.innerHTML = "";
+
+    for (i = 0; i <= scoresArray.length - 1; i++) {
+      let li = document.createElement("li");
+
+      li.textContent  = `${scoresArray[i].initials} Your Score Is ${scoresArray[i].score}`;
+      // console.log(scoresArray[i].initials);
+
+      highScoresOl.appendChild(li);
+    }
+    console.log(scoresArray);
+
+    saveScores();
+    loadScores();
+  }
+}
+
+//   ***-----Save Scores in local storage Function    ------**** 
+
+function saveScores() {
+ localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
+};
+
+
+//   ***-----LOAD Scores from local storage Function    ------****
+function loadScores() {
+  //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
   quizContainer.style.display = "none";
   gameOverContainer.style.display = "none";
   scoreListContainer.style.display = "block";
 
-  let listItemEl = document.createElement("li");
-  listItemEl.className = "score-item";
-  console.log(listItemEl)
+  var savedScores = JSON.parse(localStorage.getItem("scoresArray"));
 
-  //assign unique ID to each score as custom attribute
-  listItemEl.setAttribute("score-item-id", highScoreIdCounter);
-
-  //create a div to store the name and score in
-  var scoreInfoEl = document.createElement("div");
-  //div has a class name of
-  scoreInfoEl.className = "score-info";
-  console.log(scoreInfoEl)
-
-
-  //add HTML/display content to the div
-  userNameObjString = JSON.stringify(userNameObj)
-  //savedScores = JSON.parse(savedScores);
-  userNameObjString =JSON.parse(userNameObjString)
-  console.log(userNameObjString.name);
-  console.log(userNameObjString.score);
-
-  scoreInfoEl.innerHTML = "<h3>" + userNameObjString.name +  userNameObjString.score +  "</h3>"
-  //add score info to the li item
-  listItemEl.appendChild(scoreInfoEl);
-
-  // //add highScoreIdCounter value to userNameObj as a property
-  // userNameObj.id = highScoreIdCounter
-  //push to scores array
-  scoresArray.push(userNameObjString);
-
-  //   //add list item to the ul
-  //    highScoresUl.appendChild(listItemEl);
-  //    // console.log(listItemEl);
-  //  };
-  }
-   saveScores();
-  }
-   //increase score counter for next high score
-   highScoreIdCounter++;
-
-// };
-//  //add score in viewport 
-//  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
-// // // }
-
- //   ***-----Save Scores in local storage Function    ------****
- function saveScores() {
-   localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
- };
-
-
- //   ***-----LOAD Scores from local storage Function    ------****
- function loadScores() {
-   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
-   var savedScores = localStorage.getItem("scoresArray");
-
-   //Iterates through a array and creates elements on the page from it.
-  {
+  //Iterates through a array and creates elements on the page from it.
+  
     if (!savedScores) {
-      scoresArray = [];
+      scoresArray = savedScores;
       return false;
-    };
-    savedScores = JSON.parse(savedScores);
-    for (var i = 0; i < savedScores.length; i++) {
-    //pass ea  score obj into createListItemInfoEl()
-    createListItemInfoEl(savedScores[i]);
-   };
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //increase score counter for next high score
+// highScoreIdCounter++;
+//  //add score in viewport 
+//  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
+//  }
+  // let listItemEl = document.createElement("li");
+  // listItemEl.className = "score-item";
+  // console.log(listItemEl)
+
+  // //assign unique ID to each score as custom attribute
+  // listItemEl.setAttribute("score-item-id", highScoreIdCounter);
+
+  // //create a div to store the name and score in
+  // var scoreInfoEl = document.createElement("div");
+  // //div has a class name of
+  // scoreInfoEl.className = "score-info";
+  // console.log(scoreInfoEl)
+
+
+
+
+
+
+// //  //reset form fields
+// // // document.querySelector("input[name='user-initials']").value = "";
+
+// //package data as object to save in localStorage
+// var userNameObj = {
+//   name: userInitials,
+//   score: timerEndEl.textContent
+// }
+
+// console.log(userNameObj.name);
+// console.log(userInitials);
+
+
+// //add HTML/display content to the div
+// userNameObjString = JSON.stringify(userNameObj);
+// //savedScores = JSON.parse(savedScores);
+// userNameObjString = JSON.parse(userNameObjString);
+// console.log(userNameObjString.name);
+// console.log(userNameObjString.score);
+
+// createListItemInfoEl(userNameObj);
+
+
+
+// //   ***------   createListItemInfoEl Function  -----****
+
+// //make the list in HTML & Display
+
+// function createListItemInfoEl(userNameObj) {
+//   quizContainer.style.display = "none";
+//   gameOverContainer.style.display = "none";
+//   scoreListContainer.style.display = "block";
+
+//   let listItemEl = document.createElement("li");
+//   listItemEl.className = "score-item";
+//   console.log(listItemEl)
+
+//   //assign unique ID to each score as custom attribute
+//   listItemEl.setAttribute("score-item-id", highScoreIdCounter);
+
+//   //create a div to store the name and score in
+//   var scoreInfoEl = document.createElement("div");
+//   //div has a class name of
+//   scoreInfoEl.className = "score-info";
+//   console.log(scoreInfoEl)
+
+
+//   //add HTML/display content to the div
+//   userNameObjString = JSON.stringify(userNameObj)
+//   //savedScores = JSON.parse(savedScores);
+//   userNameObjString = JSON.parse(userNameObjString)
+//   console.log(userNameObjString.name);
+//   console.log(userNameObjString.score);
+
+//   scoreInfoEl.innerHTML = "<h3 class='h3'>" + userNameObjString.name + ' scored: ' + userNameObjString.score + "</h3>"
+//   //add score info to the li item
+//   listItemEl.appendChild(scoreInfoEl);
+
+//   // //add highScoreIdCounter value to userNameObj as a property
+//   // userNameObj.id = highScoreIdCounter
+//   //push to scores array
+//   scoresArray.push(userNameObjString);
+
+//   //add list item to the ol
+//   highScoresol.appendChild(listItemEl);
+//   // console.log(listItemEl);
+// };
+
+// saveScores();
+
+// //increase score counter for next high score
+// highScoreIdCounter++;
+
+// // };
+// //  //add score in viewport 
+// //  scoreFormEl.addEventListener("save-initials", scoreFormHandler);
+// // // // }
+
+// //   ***-----Save Scores in local storage Function    ------****
+// function saveScores() {
+//   localStorage.setItem("scoresArray", JSON.stringify(scoresArray));
+// };
+
+
+// //   ***-----LOAD Scores from local storage Function    ------****
+// function loadScores() {
+//   //Gets scores from localStorage & //Converts  from the string format back into an array of objects. Send 1 at a time thru 
+//   var savedScores = localStorage.getItem("scoresArray");
+
+//   //Iterates through a array and creates elements on the page from it.
+//   {
+//     if (!savedScores) {
+//       scoresArray = [];
+//       return false;
+//     };
+//     savedScores = JSON.parse(savedScores);
+//     for (var i = 0; i < savedScores.length; i++) {
+//       //pass ea  score obj into createListItemInfoEl()
+//       createListItemInfoEl(savedScores[i]);
+//     };
+//   };
+
+// }
