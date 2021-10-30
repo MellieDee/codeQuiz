@@ -201,7 +201,7 @@ function scoreFormHandler(event) {
       name: userInitials,
       score: timerEndEl.textContent
     }
-    console.log(userNameObj);
+    console.log(userNameObj.name);
  
     createListItemInfoEl(userNameObj);
 
@@ -227,14 +227,20 @@ function createListItemInfoEl(userNameObj) {
 
 
   //add HTML/display content to the div
-  scoreInfoEl.innerHTML = "<h3>" + userNameObj + "</h3>"
+  userNameObjString = JSON.stringify(userNameObj)
+  //savedScores = JSON.parse(savedScores);
+  userNameObjString =JSON.parse(userNameObjString)
+  console.log(userNameObjString.name);
+  console.log(userNameObjString.score);
+
+  scoreInfoEl.innerHTML = "<h3>" + userNameObjString.name +  userNameObjString.score +  "</h3>"
   //add score info to the li item
   listItemEl.appendChild(scoreInfoEl);
 
   // //add highScoreIdCounter value to userNameObj as a property
   // userNameObj.id = highScoreIdCounter
   //push to scores array
-  scoresArray.push(userNameObj);
+  scoresArray.push(userNameObjString);
 
   //   //add list item to the ul
   //    highScoresUl.appendChild(listItemEl);
