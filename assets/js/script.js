@@ -251,9 +251,9 @@ function addingScore(event) {
     alert("Please enter letters, silly!");
     return false;
 
-  }  else if (initialsUpper === "") {
-    alert("I thought you wanted to save your progress?");
-    return false;
+  // }  else if (initialsUpper === "") {
+  //   alert("I thought you wanted to save your progress?");
+  //   return false;
 
   } else {
     scoresArray.push({ initials: initialsUpper, score: timerEndEl.textContent })

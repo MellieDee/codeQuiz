@@ -61,7 +61,7 @@ a {
 
 .high-score-nav-btn nav ul li {
  list-style-type: none;
- /* padding: 0 3em; */
+ 
 }
 
 #question-container, #answer-container  {
@@ -82,15 +82,16 @@ a {
 
 /*** MEDIA QUERIES START   ***/
 
-@media (min-width: 576px) {
-  body {
-    font-size: 20px;
+ @media (min-width: 576px) {
+  .start-text p, .score-text p {
+    font-size: 1.5em;
   }
 }
-/* MQ FOR SMALLER SCREENS    */
+
+/* MQ FOR SMALLER SCREENS  */
 @media  (min-width: 768px){
-  body {
-    font-size: 18px;
+  .start-text p, .score-text p {
+    font-size: 1.5em;
   }
   #start {
     width: 30%;
@@ -101,10 +102,25 @@ a {
 
 }
 
-/* MQ FOR LARGER TABLETS,  LAPTOPS  DESKTOPS   */
+/* MQ FOR LARGER TABLETS,  LAPTOPS  DESKTOPS  */
 @media (min-width: 992px){
-  body {
-    font-size: 20px;
+
+  .card-body p, #question, .score-text p {
+    font-size: 2em;
+  }
+
+  .choiceBtn li {
+    font-size: 7em;
+  }
+
+  .choiceBtn {
+    width: 30%;
+  }
+
+
+  #score-list ol li {
+    font-size: 1.6em;
   }
 }
+
 

@@ -15,16 +15,30 @@ A mock-up for functionality was given. This version applies that functionality, 
 - When the start button is clicked, user is presented with a question.
 - After the question is answered, another question appears.
 - If a question is answered incorrectly, time is subtracted from the clock.
-- When all questions are answered orhte the timer reaches zero, the game is over.
-- When the game is over, user can save intials an score.
+- When all questions are answered or the timer reaches zero, the game is over.
+- When the game is over, user can save intials and score.
 
 
 &nbsp;
 
+
+## codeQuiz URL
+
+***
+
+Link to the quiz here *[Code Quiz](https://melliedee.github.io/codeQuiz/)*.
+
+&nbsp;&nbsp;&nbsp;
+
 ## Other Notes
 ***
-I set userScore to 0 initially.
-Then calculated the score as userScore * 10 + the timeLeft 
+- I set userScore to 0 initially. Then calculated the score as userScore * 10 + the timeLeft.
+- I have funciton checking if intials are characters A-Z; also have checking if null commented out. Not sure which I like better at the moment.
+- I left console.logs in as reference; generally will take them out before deployment.
+
+&nbsp;
+
+
 
 ### URLs I found Helpful
 ***
