@@ -5,6 +5,7 @@ let saveInitialsBtn = document.getElementById("save-initials")
 let highScoreBtn = document.getElementById("high-score-btn");
 let clearScoresBtn = document.getElementById("clear-scores");
 let startAgainBtn = document.getElementById("start-again");
+let li = document.createElement("li"); 
 
 //   *** Display Containers ***
 let welcomeContainer = document.getElementById("welcome-container");
@@ -234,8 +235,23 @@ function addingScore(event) {
   //check if typed UPPERCASE
   let initialsUpper = userInitials.value.toUpperCase();
 
-  //check to see if the values are empty strings
-  if (initialsUpper === "") {
+
+  // function isLetter(char) {     
+  //   if (str.length !== 1 && str.match(/[a-z]/i)) { 
+  //      return true;    
+  //    } return false;   
+  //   }
+  
+    function isLetter(char){
+      return ( (char >= 'A' &&  char <= 'Z') ||
+               (char >= 'a' &&  char <= 'z') );
+  }
+  
+  if (!isLetter(initialsUpper)) {
+    alert("Please enter letters, silly!");
+    return false;
+
+  }  else if (initialsUpper === "") {
     alert("I thought you wanted to save your progress?");
     return false;
 
@@ -257,7 +273,7 @@ function addingScore(event) {
     highScoresOl.innerHTML = "";
 
     for (i = 0; i <= scoresArray.length - 1; i++) {
-      let li = document.createElement("li"); 
+      // let li = document.createElement("li"); 
 
       li.className = "score-item";
       li.textContent = `${scoresArray[i].initials} at ${scoresArray[i].score}`;
@@ -302,7 +318,8 @@ function loadScores() {
 /*-----clearScores Function Starts   ------*/
 function clearScores() {
   localStorage.clear();
-  scoreList.style.display = "none";
+  li.textContent = "Get your initials here!!"
+  // scoreList.style.display = "none";
 }
 /*-----clearScores Function Ends   ------*/
 
@@ -319,3 +336,4 @@ function startQuizAgain() {
   displayQuestion();
 };
 /*----Start Quiz Again Function Ends   -----*/
+
