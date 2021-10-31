@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   <!-- STYLING LINKS--->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -16,139 +17,126 @@
 
 </head>
 
-<body >
-<!--    HEADER   -->
-<div class="container">
-  <div class="row">
-    <header class="col-12 text-center m-4 ">
-      <h1 class="h1">Code Quiz</h1>
-      <p>Test your might against the clock!</p>
-     </header>
+<body>
+  <div container>
+  <!--    HEADER   -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mx-auto pt-3  d-block"
+      <header>
+        <h1 class="h1">Code Quiz</h1>
+        <p>Test your might against the clock!</p>
+      </header>
+      </div>
+ </div>
 
-    <div class="col-12 align-items-center m-4 high-score-nav">
-      <nav>
-       <ul>
-          <li id="high-score-btn">
-           <a class="btn" href="#score-list-container" role="button">High Scores</a>
-         </li>
-      
-          <!-- <li class="btn">
-          <a href="#welcome-container">Start Over</a>
-          </li> -->
-        </ul>
-       </nav>
+    <div class="row align-items-left p-2 m-2 d-block high-score-nav-btn">
+      <div class="col-12"> 
+        <nav>
+          <nav>
+            <ul>
+              <li id="high-score-btn">
+              <a class="btn" href="#score-list-container" role="button">High Scores</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
 
-  </div>
-</div>
+
+  <!------   Welcome  Container Starts   ------->
+  <section class="card mx-auto p-2 m-3" style="width: 95%" id="welcome-container">
+    <div class="card-body p-1 m-1">
+      <p class="text-left start-text">
+        Press "Start Quiz" to begin the countdown.</br>
+        After each question is answered, the next will appear. If you answer a question incorrectly, you'll be penalized
+        5 seconds. Go get 'em, Tiger!
+      </p>
+      <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
+    </div>
+  </section>
+  <!------   Welcome  Container Ends   ------->
 
 
 
-<!------   Welcome  Container Starts   ------->
-<section class="card mx-auto p-2 m-3" style="width: 90%" id="welcome-container">
-  <div class="card-body p-1 m-1">
-    <p class="text-large text-center font-weight-bold">
-      Press "Start Quiz" to begin the countdown.</br>
-      After each question is answered, the next will appear. If you answer a question incorrectly, you'll be penalized 5 seconds. Go get 'em, Tiger!
-    </p>
-    <button type="button" class="btn btn-lg btn-block" id="start">Start Quiz</button>
-  </div>
-</section> 
-<!------   Welcome  Container Ends   ------->
+  <!------   Quiz Container Starts   ------>
+  <main class="card mx-auto p-2" style="width: 90%" id="quiz-container">
 
-
-
-<!------   Quiz Container Starts   ------>
-<main class="card mx-auto p-2 m-3 " style="width: 90%" id="quiz-container">
-
-   <!-- Timer  -->  
-    <div class="card-header">
+    <!-- Timer  -->
+    <div class="card-header ">
       <!--link or btn to to high scores page-->
-      <h2 class="h3" id="timer"></h2>
+      <h2 class="h4" id="timer"></h2>
     </div>
 
     <!--   Questions  -->
     <div class="card-body" id="question-container">
-      <h3 class="card-text text-justify font-weight-bold" id="question"></h3>
+      <h3 class="h4 card-text text-justify" id="question"></h3>
 
-    <!--   Answer Choices Container-->
-    <div class="row list-group answers pb-3" id="answer-container">
-      <button type="button" class="list-group-item m-1 text-left btn choiceBtn" id="a"></li>
-      <button type="button" class="list-group-item m-1 text-left btn choiceBtn" id="b"></li>
-      <button type="button" class="list-group-item m-1 text-left btn choiceBtn" id="c"></li>
-      <button type="button" class="list-group-item m-1 pb-2 text-left btn choiceBtn" id="d"></li>
-    </div>
-
-    <h3 class="card-text text-justify font-weight-bold pt-2" id="result"</h3>
-  </div>
-</main>
-
-<!--   GAME OVER Container   -->
-<section class="card mx-auto p-1 m-3" style="width: 90%" id="game-over-container">
-  <div class="card-body">
-
-    <div class="card-header">
-      <h2 class="card-title game-overvfont-weight-bold">Game Over!</h2>
-      <p class="score-text">Your score is: <span id="timer-end"</span></p>
-    </div>
-
-    <form id="score-form">
-      <div class="form-group">
-        <input type="text" name="user-initials" id="initials" class="form-control text-input" placeholder="Your Initials"/>
+      <!--   Answer Choices Container-->
+      <div class="row list-group answers pb-2" id="answer-container">
+        <button type="button" class="list-group-item  p-1 text-left btn choiceBtn" id="a"></li>
+          <button type="button" class="list-group-item p-1 text-left btn choiceBtn" id="b"></li>
+            <button type="button" class="list-group-item p-1 text-left btn choiceBtn" id="c"></li>
+              <button type="button" class="list-group-item p-1 pb-1 text-left btn choiceBtn" id="d"></li>
       </div>
 
-      <div class="input-group-append form-group">
-        <button class="btn" id="save-initials">Save Initials</button>
+      <h3 class="h4 card-text text-justify pt-1 pb-0" id="result" </h3>
+    </div>
+  </main>
+
+  <!--   GAME OVER Container   -->
+  <section class="card mx-auto p-2" style="width: 90%" id="game-over-container">
+    <div class="card-body">
+
+      <div class="card-header">
+        <h2 class="card-title game-over ">Game Over!</h2>
+        <p class="score-text">Your score is: <span id="timer-end" </span></p>
       </div>
 
-    </form>
-<!-- 
-    <div class="card-footer">
-      <button class="btn" id="start-again">Start Again</button>
-    </div> -->
+      <form id="score-form">
+        <div class="form-group">
+          <input type="text" name="user-initials" id="initials" class="form-control text-input"
+            placeholder="Your Initials" />
+        </div>
+
+        <div class="input-group-append form-group">
+          <button class="btn" id="save-initials">Save Initials</button>
+        </div>
+
+      </form>
   
-  </div>
-</section>
-
-
-<!--   HIGH SCORE LIST that gets added onto dynamically-->
-<section class="card mx-auto p-1 m-3" style="width: 90%" id="score-list-container">
-  <div class="card-body"
-
-    <div class="card-header"> 
-    <h2 class="card-title list-title text-center">High Scores</h2>
     </div>
-   
+  </section>
+
+
+  <!--   HIGH SCORE LIST that gets added onto dynamically-->
+  <section class="card mx-auto p-2" style="width: 90%" id="score-list-container">
+    <div class="card-body" <div class="card-header">
+      <h2 class="card-title list-title text-center">High Scores</h2>
+    </div>
+
     <div id="score-list">
-    <ol class="score-list" id="high-scores">
-    </ol>
+      <ol class="score-list" id="high-scores">
+      </ol>
     </div>
 
     <div class="card-footer">
       <button class="btn" id="start-again">Start Again</button>
-    
+
       <button class="btn" id="clear-scores">Clear High Scores</button>
     </div>
 
 
-</section>
+  </section>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 
-
-
-
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="./assets/js/script.js"></script>
-
-
+  </div>
 </body>
 
 </html>

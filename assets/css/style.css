@@ -12,28 +12,31 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
+
 html {
   min-height: 100vh;
   cursor: default;
 }
-/* 
- .default {
-   cursor: default;
-  } */
 
 body {
-  font-size: .8em;
+  font-size: 0.9em;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   overflow-x: hidden;
   background-color: var(--primary-color);
   color: rgba(180, 181, 207, 1.0);
-  min-height: 100vh;
+  height: 100vh;
+  max-width: 98%;
 }
 
-.start-text, .score-text, p {
-  font-size: 1.8em;
+a {
+  color: inherit;
+}
+
+
+.start-text p, .score-text p {
+  font-size: 1.3em;
 }
 
  .card {
@@ -44,37 +47,64 @@ body {
   box-shadow: 0 0 3px var( --accent-color1); 
   background-color: var(--tertiary-color);
   color: var(--primary-color);
+  margin: 0.1em 0;
 }
    
 .btn:hover {
   background-color: var(--accent-color1);
 }
-   
-/* .btn::after {
-  background-color: var(--accent-color2);
-  color: var(--secondary-color);
-}  */
 
- .high-score-nav nav ul li {
+.choiceBtn {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.high-score-nav-btn nav ul li {
  list-style-type: none;
+ /* padding: 0 3em; */
 }
-
-a {
-  color: inherit;
-}
-
 
 #question-container, #answer-container  {
-  border-bottom: 3px solid var(--accent-color1);
+  border-bottom: 2px solid var(--accent-color1);
 }
+
 
  .score-item {
   color: var(--secondary-color);
-  font-size: 1.6em;
-  padding: 1em 3em;
-  line-height: 1.5;
- }
+  font-size: 1.1em;
+  margin: 0 2em;
+} 
 
- #quiz-container, #game-over-container, #score-list-container {
+#quiz-container, #game-over-container, #score-list-container {
   display: none;
 }
+
+
+/*** MEDIA QUERIES START   ***/
+
+@media (min-width: 576px) {
+  body {
+    font-size: 20px;
+  }
+}
+/* MQ FOR SMALLER SCREENS    */
+@media  (min-width: 768px){
+  body {
+    font-size: 18px;
+  }
+  #start {
+    width: 30%;
+  }
+ .choiceBtn {
+    width: 50%;
+  }
+
+}
+
+/* MQ FOR LARGER TABLETS,  LAPTOPS  DESKTOPS   */
+@media (min-width: 992px){
+  body {
+    font-size: 20px;
+  }
+}
+
