@@ -40,8 +40,8 @@ Link to the quiz here *[Code Quiz](https://melliedee.github.io/codeQuiz/)*.
 
 ## Screen shots
 ***
-![image](https://user-images.githubusercontent.com/89175650/140257054-aa7841f4-5b85-4e89-965c-08743961db1a.png)
-![image](https://user-images.githubusercontent.com/89175650/140257069-ac53f1c7-668b-4208-96a3-a51068a773e7.png)
+![Code Quiz](https://user-images.githubusercontent.com/89175650/140257054-aa7841f4-5b85-4e89-965c-08743961db1a.png)
+![Code Quiz](https://user-images.githubusercontent.com/89175650/140257069-ac53f1c7-668b-4208-96a3-a51068a773e7.png)
 
 
 ### URLs I found Helpful
